@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Ergün Özsoy · Turkologie & Germanistik · LMU München</title>
+<meta name="description" content="Persönliche akademische Homepage von Dr. Ergün Özsoy — Lehre, Forschung, Digital Humanities Lab, Kultur & Tourismus.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+:root{
+  --paper:#FBFAF6;
+  --ink:#23262D;
+  --muted:#6B6E76;
+  --cobalt:#1E4B8F;
+  --turquoise:#0E8C86;
+  --line:#E4E2D9;
+  --card:#FFFFFF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.65;
+  font-size:17px;
+}
+.serif{font-family:"Iowan Old Style",Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif}
+.wrap{max-width:880px;margin:0 auto;padding:0 24px}
+
+/* ── Header (ortalanmış hero) ── */
+header{padding:52px 0 0;text-align:center}
+.name{font-size:2.3rem;font-weight:700;letter-spacing:.01em;color:var(--cobalt)}
+.role{color:var(--muted);margin-top:6px;font-size:1.05rem}
+.affil{margin-top:14px;font-size:.95rem}
+.affil .lbl{color:var(--ink);font-weight:500;margin-right:4px}
+.affil a{color:var(--cobalt);text-decoration:none;border-bottom:1px solid transparent}
+.affil a:hover,.affil a:focus{border-bottom-color:var(--cobalt)}
+.affil span.sep{color:var(--muted);margin:0 8px}
+
+/* Karşılama */
+.hello{font-size:1.85rem;font-weight:600;text-align:center;margin-top:52px}
+.intro{margin:16px auto 8px;font-size:1.06rem;max-width:640px;text-align:center}
+
+/* İznik şeridi — imza öğesi */
+.iznik{
+  height:7px;margin-top:26px;border-radius:2px;
+  background:repeating-linear-gradient(90deg,
+    var(--cobalt) 0 34px,
+    var(--turquoise) 34px 46px,
+    var(--paper) 46px 52px,
+    var(--turquoise) 52px 64px);
+}
+
+/* ── Sprache / Nav ── */
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 0 0}
+nav{display:flex;gap:22px;flex-wrap:wrap}
+nav a{color:var(--ink);text-decoration:none;font-size:.95rem;font-weight:500;border-bottom:2px solid transparent;padding-bottom:2px}
+nav a:hover,nav a:focus{border-bottom-color:var(--turquoise)}
+.langs{display:flex;gap:2px}
+.langs button{
+  border:1px solid var(--line);background:var(--card);color:var(--muted);
+  font:inherit;font-size:.82rem;padding:3px 10px;cursor:pointer
+}
+.langs button:first-child{border-radius:4px 0 0 4px}
+.langs button:last-child{border-radius:0 4px 4px 0}
+.langs button.on{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+.langs button:focus-visible{outline:2px solid var(--turquoise);outline-offset:1px}
+
+/* Dil geçişi — yumuşak fade */
+.wrap{transition:opacity .18s ease}
+.wrap.lang-switching{opacity:0}
+@media (prefers-reduced-motion:reduce){.wrap{transition:none}}
+
+/* ── Lehre+Forschung kart ızgarası ── */
+.acc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:56px}
+@media(max-width:620px){.acc-grid{grid-template-columns:1fr}}
+.acc-grid section{margin-top:0}
+.acc-grid section.expanded{grid-column:1 / -1}
+
+/* ── Akordeon kartları (Lehre & Forschung) ── */
+.acc{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:18px 20px;transition:box-shadow .15s ease}
+.acc:hover{box-shadow:0 1px 6px rgba(30,75,143,.08)}
+.acc .tag{display:block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--turquoise);font-weight:600;margin-bottom:6px}
+.acc summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:"+";font-size:1.6rem;font-weight:400;color:var(--cobalt);line-height:1;flex-shrink:0}
+.acc[open] summary::after{content:"\2212"}
+.acc summary:hover h2{border-left-color:var(--turquoise)}
+.acc .sectionbody{margin-top:18px;border-top:1px solid var(--line);padding-top:6px}
+
+/* ── Sections ── */
+section{margin-top:64px}
+h2{
+  font-size:1.45rem;font-weight:600;
+  padding-left:14px;border-left:4px solid var(--cobalt);
+}
+h2 .sub{display:block;font-size:.82rem;font-weight:400;color:var(--muted);letter-spacing:.04em;margin-top:2px}
+.sectionbody{margin-top:22px}
+h3{font-size:1.02rem;margin:26px 0 10px;color:var(--cobalt)}
+
+ul.plain{list-style:none}
+ul.plain li{padding:10px 0;border-bottom:1px solid var(--line)}
+ul.plain li:last-child{border-bottom:none}
+.meta{color:var(--muted);font-size:.88rem}
+
+/* ── Project cards ── */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:22px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:6px;
+  padding:18px 18px 16px;display:flex;flex-direction:column;gap:8px;
+}
+.card .tag{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--turquoise);font-weight:600}
+.card h4{font-size:1.05rem;font-weight:600}
+.card p{font-size:.9rem;color:var(--muted);flex:1}
+.card a.go{color:var(--cobalt);text-decoration:none;font-size:.9rem;font-weight:500}
+.card a.go:hover,.card a.go:focus{text-decoration:underline}
+
+/* ── Animasyon katmanı (yalnız hareket tercihi açık olanlara) ── */
+@media (prefers-reduced-motion: no-preference){
+  /* Kayarken belirme */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  /* Kart mikro-etkileşim */
+  .card{transition:transform .22s ease,box-shadow .22s ease}
+  .card:hover{transform:translateY(-4px);box-shadow:0 8px 22px rgba(30,75,143,.12)}
+  .acc{transition:transform .22s ease,box-shadow .22s ease}
+  .acc:not([open]):hover{transform:translateY(-3px)}
+  /* İznik şeridi: soldan sağa çizilme */
+  .iznik{transform-origin:left center;animation:iznikDraw 1.1s cubic-bezier(.25,.7,.3,1) .25s backwards}
+  @keyframes iznikDraw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  /* Karşılama başlığı yumuşak giriş */
+  .name,.role,.affil{animation:fadeUp .7s ease backwards}
+  .role{animation-delay:.12s}.affil{animation-delay:.22s}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+}
+
+/* ── Footer ── */
+footer{margin-top:80px;padding:28px 0 44px;border-top:1px solid var(--line);color:var(--muted);font-size:.86rem}
+footer a{color:var(--cobalt);text-decoration:none}
+footer a:hover,footer a:focus{text-decoration:underline}
+.disclaimer{margin-top:10px;font-style:italic}
+
+@media(max-width:560px){
+  .name{font-size:1.7rem}
+  header{padding-top:36px}
+  section{margin-top:48px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <h1 class="name serif">Dr. Ergün Özsoy</h1>
+  <p class="role" data-i18n="role">Turkologie · Germanistik — Ludwig-Maximilians-Universität München</p>
+  <p class="affil">
+    <span class="lbl" data-i18n="affil_lbl">Offizielle LMU-Profile:</span>
+    <a href="https://www.naher-osten.uni-muenchen.de/personen/wiss_ma/oezsoy/index.html" target="_blank" rel="noopener noreferrer" data-i18n="affil1">Institut für den Nahen und Mittleren Osten</a>
+    <span class="sep">|</span>
+    <a href="https://www.sprachlit.lmu.de/germanistik/de/personenverzeichnis/kontaktseite/erguen-oezsoy-85686623.html" target="_blank" rel="noopener noreferrer">Germanistik</a>
+  </p>
+  <div class="iznik" aria-hidden="true"></div>
+
+  <div class="topbar">
+    <nav aria-label="Hauptnavigation">
+      <a href="#teaching" data-i18n="nav_teaching">Lehre</a>
+      <a href="#research" data-i18n="nav_research">Forschung</a>
+      <a href="#lab" data-i18n="nav_lab">Digital Humanities Lab</a>
+      <a href="#kultur" data-i18n="nav_kultur">Kultur</a>
+      <a href="#kontakt" data-i18n="nav_kontakt">Kontakt</a>
+    </nav>
+    <div class="langs" role="group" aria-label="Sprache / Language / Dil">
+      <button type="button" data-lang="de" class="on">DE</button>
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="tr">TR</button>
+    </div>
+  </div>
+</header>
+
+<p class="hello serif" data-i18n="hello">Willkommen</p>
+<p class="intro" data-i18n="intro">
+Willkommen auf meiner persönlichen akademischen Homepage. Diese Seite ergänzt meine
+offiziellen LMU-Profile um aktuelle Informationen zu Lehre, Forschung und digitalen Projekten.
+</p>
+
+<!-- ═══════════ LEHRE + FORSCHUNG (kart ızgarası) ═══════════ -->
+<div class="acc-grid">
+<section id="teaching" class="reveal">
+  <details class="acc">
+  <summary><div><span class="tag" data-i18n="tag_teaching">Kurse · SoSe 2026</span><h2 data-i18n="h_teaching">Lehre<span class="sub" data-i18n="s_teaching">Teaching · Dersler</span></h2></div></summary>
+  <div class="sectionbody">
+
+    <h3 data-i18n="h_current">Aktuelle Lehrveranstaltungen</h3>
+    <p class="meta" style="margin-bottom:6px">
+      <span data-i18n="portals_lbl">Kursportale:</span>
+      <a href="https://lsf.verwaltung.uni-muenchen.de/" target="_blank" rel="noopener noreferrer" style="color:var(--cobalt);text-decoration:none">LSF — Vorlesungsverzeichnis</a>
+      <span style="color:var(--line)">·</span>
+      <a href="https://moodle.lmu.de/" target="_blank" rel="noopener noreferrer" style="color:var(--cobalt);text-decoration:none">Moodle</a>
+    </p>
+    <!-- Kaynak: LSF, SoSe 2026 — Modulprüfungen bilinçli olarak dahil edilmedi -->
+    <ul class="plain">
+      <li>Kontrastiver Sprachunterricht Deutsch–Türkisch II <span class="meta">— Übung · Mo &amp; Do 16:00–18:30 · SoSe 2026 · <a href="projects/turkce-ders-notlari/" style="color:var(--turquoise);text-decoration:none;font-weight:500" data-i18n="applink">Begleitende Web-App →</a></span></li>
+      <li>Deutsch-türkische Begegnungen in Geschichte und Gegenwart <span class="meta">— Seminar · Di 12–14 · SoSe 2026</span></li>
+      <li>Sprachvergleich im DaZ-Unterricht am Beispiel der Erstsprache Türkisch <span class="meta">— Seminar · Di 14–16 · SoSe 2026 · <a href="projects/daz-sprachvergleich/" style="color:var(--turquoise);text-decoration:none;font-weight:500" data-i18n="applink2">Begleitende Web-App →</a></span></li>
+      <li>Osmanisch 2: Historische Textlektüre und Sprachstruktur <span class="meta">— Übung · Do 10–12 · SoSe 2026 · <a href="projects/osmanisch-lektuere/" style="color:var(--turquoise);text-decoration:none;font-weight:500" data-i18n="applink3">Begleitende Web-App →</a></span></li>
+      <li>Türkische historische und literarische Texte <span class="meta">— Sprachunterricht · Di 16–18 · SoSe 2026 · <a href="projects/turkologie-guide/" style="color:var(--turquoise);text-decoration:none;font-weight:500" data-i18n="applink4">Begleitende Web-App →</a></span></li>
+    </ul>
+
+  </div>
+  </details>
+</section>
+
+<section id="research" class="reveal">
+  <details class="acc">
+  <summary><div><span class="tag" data-i18n="tag_research">Publikationen · Vorträge</span><h2 data-i18n="h_research">Forschung<span class="sub" data-i18n="s_research">Research · Araştırma</span></h2></div></summary>
+  <div class="sectionbody">
+
+    <h3 data-i18n="h_wp">Working Papers &amp; laufende Projekte</h3>
+    <ul class="plain">
+      <li>
+        <strong>TÜRKENBUCH</strong>
+        <span class="meta" data-i18n="wp_tb">— Buchprojekt, in Vorbereitung</span>
+      </li>
+    </ul>
+
+    <h3 data-i18n="h_pub">Publikationen</h3>
+    <p class="meta" style="margin-bottom:6px">
+      <span data-i18n="profiles_lbl">Profile:</span>
+      <a href="https://orcid.org/0000-0003-4961-476X" target="_blank" rel="noopener noreferrer" style="color:var(--cobalt);text-decoration:none"><svg viewBox="0 0 256 256" width="14" height="14" style="vertical-align:-2px;margin-right:2px" aria-hidden="true"><circle cx="128" cy="128" r="128" fill="#A6CE39"/><path fill="#fff" d="M86 186h-17V80h17v106zm-8.5-119c-6 0-11-5-11-11s5-11 11-11 11 5 11 11-5 11-11 11zM197 186h-17v-2c0-1 0-2 0-2 0-33 0-45-1-50-1-8-4-13-9-17-5-3-9-4-19-4h-20v75h-17V96h38c15 0 24 3 32 10 9 8 13 19 13 40v40z"/></svg>ORCID</a>
+      <span style="color:var(--line)">·</span>
+      <a href="https://scholar.google.com/citations?user=47aa8gQAAAAJ" target="_blank" rel="noopener noreferrer" style="color:var(--cobalt);text-decoration:none">Google Scholar</a>
+      <span style="color:var(--line)">·</span>
+      <a href="https://www.researchgate.net/profile/Erguen-Oezsoy" target="_blank" rel="noopener noreferrer" style="color:var(--cobalt);text-decoration:none">ResearchGate</a>
+      <!-- ✏️ Open Access LMU herkese açık yazar sayfası linki gelince buraya eklenecek -->
+    </p>
+
+    <h3 data-i18n="h_books">Bücher</h3>
+    <ul class="plain">
+      <li>Bütün Yollar İstanbul'a Çıkar – Jakob von Betzek'in Macaristan ve Türkiye'ye Diplomatik Kurye Olarak Seyahatleri: 1564/1565, 1572, 1573. <span class="meta">Libra, İstanbul, 2024.</span></li>
+      <li>Yabancı Dil Olarak Türkçe Öğretiminde Temel Söz Edimleri <span class="meta">(mit Dursun Köse). Paradigma Akademi, İstanbul, 2022.</span></li>
+      <li>Akdeniz'de Osmanlılar ve Habsburglar 1550–1600: Siyaset–Ticaret–Ziyaret. <span class="meta">Libra, İstanbul, 2018.</span></li>
+      <li>XVI. Yüzyıl Alman Seyahatnamelerine Göre Akdeniz. <span class="meta">Libra, İstanbul, 2015.</span></li>
+    </ul>
+
+    <h3 data-i18n="h_articles">Aufsätze und Beiträge</h3>
+    <ul class="plain">
+      <li>Die Sprachen der osmanischen Kanzlei und die Urkundensprachen am Sultanshof. <span class="meta">In: Die Kanzleisprache Ludwigs des Bayern im europäischen Kontext, Studia Augustana, Bd. 23, 2024. <a href="https://doi.org/10.1515/9783111165226" target="_blank" rel="noopener noreferrer" style="color:var(--cobalt)">DOI</a></span></li>
+      <li>Cultural and Religious Diversity in Istanbul in the Sixteenth Century – through the Eyes of German Travellers. <span class="meta">Journal of Balkan and Black Sea Studies, 2024. <a href="https://doi.org/10.56679/balkar.1424022" target="_blank" rel="noopener noreferrer" style="color:var(--cobalt)">DOI</a></span></li>
+      <li>Historical Artifacts Smuggled Abroad from Anatolian Lands and Cultural Heritage. <span class="meta">(mit D. Köse). Science and Innovation, 3, Special Issue 28, 2024, S. 924–929. <a href="https://doi.org/10.5281/zenodo.11098576" target="_blank" rel="noopener noreferrer" style="color:var(--cobalt)">DOI</a></span></li>
+      <li>Fuggerzeitung über die Stadt Istanbul zum Jahr 1589 – Erstedition und historische Einordnung. <span class="meta">(mit K. Wolf). Zeitschrift des Historischen Vereins für Schwaben, 115, 2023, S. 131–142.</span></li>
+      <li>Sentence Versus Utterance in Teaching Turkish as a Foreign Language. <span class="meta">(mit D. Köse). In: Sakhatova &amp; Kaili (Hrsg.): Different Aspects in Learning and Teaching Turkish as a Foreign Language. Harrassowitz, 2023, S. 97–114.</span></li>
+      <li>Battle of Lepanto in Fuggerzeitung Collection. <span class="meta">(mit K. Wolf). Tarih Dergisi / Turkish Journal of History, 76, 2022, S. 95–111. <a href="https://doi.org/10.26650/iutd.202205" target="_blank" rel="noopener noreferrer" style="color:var(--cobalt)">DOI</a></span></li>
+      <li>Hans Schiltberger'den Bugüne Almanya'da Türkçe: Bavyera'da Üniversitelerde Türkçe Öğretimi. <span class="meta">In: 7. Uluslararası Türkiyat Araştırmaları Sempozyumu, Hacettepe Üniversitesi Yayınları, 2022.</span></li>
+      <li>Epistolae Magni Turci – Fatih Sultan Mehmet Adına Yazılmış 1455 Tarihli "Kurmaca" Mektup ve Diğerleri. <span class="meta">In: Fatih Sultan Mehmet Dönemi Osmanlı Dünyası Sempozyumu Bildiriler Kitabı, 2021, S. 171–185.</span></li>
+      <li>Kudrun and Bamsı Beyrek. <span class="meta">(mit K. Wolf). In: Mitolojinin Elçisi Kamal Abdulla Armağanı, Türk Edebiyatı Vakfı, 2020, S. 375–390.</span></li>
+      <li>Türkiye'de Yabancılara Türkçe Öğretiminin Otuz Yılı: 1990–2020. <span class="meta">(mit D. Köse). Turkophone, 7(2), 2020, S. 27–54. <a href="https://dergipark.org.tr/tr/pub/turkophone/issue/57795/796847" target="_blank" rel="noopener noreferrer" style="color:var(--cobalt)">Link</a></span></li>
+      <li>Als Bayer unter Türken und Tataren: Ortsnamen bei Hans Schiltberg. <span class="meta">(mit K. Wolf). Blätter für oberdeutsche Namenforschung, 2020, S. 229–242.</span></li>
+      <li>Göçmenlere Dil Öğretimi – Almanya ve Türkiye Örneği. <span class="meta">(mit D. Köse). International Journal of Turkish Teaching as a Foreign Language, 2(1), 2019, S. 112–125. <a href="https://dergipark.org.tr/tr/pub/ijotfl/issue/41670/507154" target="_blank" rel="noopener noreferrer" style="color:var(--cobalt)">Link</a></span></li>
+      <li>Alman Tüccar Krafft'ın 1573 Yılında Trablusşam'dan Kıbrıs'a Başarısız Ticari Seferi. <span class="meta">10. Türk Deniz Ticareti Tarihi Sempozyumu, University of Kyrenia, Zypern, 2018.</span></li>
+      <li>Muhtasar Sarf ve Lügat-ı Türkiye – ein Beitrag über ein türkisches Selbstlern-Buch aus dem Jahr 1839. <span class="meta">(mit D. Köse). Turkophone, 4(2), 2017, S. 33–47. <a href="https://www.researchgate.net/publication/347015578_Turkcenin_Yabanci_Dil_Olarak_Ogretiminde_Muhtasar_Sarf_Ve_Lugat-i_Turki" target="_blank" rel="noopener noreferrer" style="color:var(--cobalt)">Link</a></span></li>
+      <li>On Altıncı Yüzyılda İstanbul'da Alman Ticari Girişimleri ve Fuggerler. <span class="meta">In: 9. Türk Deniz Ticareti Tarihi Sempozyumu, İstanbul Üniversitesi, 2017.</span></li>
+      <li>XVI. Yüzyılda Alman Seyyahların Akdeniz'de Türklerle Karşılaşmaları. <span class="meta">Tarih ve Uygarlık İstanbul Dergisi, 1–2, 2015.</span></li>
+      <li>16. Yüzyılda Alman Seyahatnamelerine Göre Doğu Akdeniz Limanları: Trablusşam, Yafa ve İskenderiye. <span class="meta">In: Türk Deniz Ticareti Tarihi Sempozyumu III, Mersin Üniversitesi, 2011.</span></li>
+    </ul>
+
+    <h3 data-i18n="h_transl">Übersetzungen</h3>
+    <ul class="plain">
+      <li>H. Kellenbenz: Yüzyılın İlk Yarısında Orta Avrupa ile İstanbul Arasında Venedik Üzerinden Ticaret Bağlantıları. <span class="meta">Tarih ve Uygarlık İstanbul Dergisi, 5, 2014, S. 117–125.</span></li>
+      <li>E. D. Petritsch: Haraç mı Onursal Hediye mi? XVI. Yüzyıl İkinci Yarısı Osmanlı-Habsburg İlişkileri Hakkında Bir Değerlendirme. <span class="meta">Türklük Araştırmaları Dergisi, 2015.</span></li>
+      <li>M. D. Birnbaum: Fuggerler, Hans Dernschwam ve Osmanlı İmparatorluğu. <span class="meta">Tarih ve Uygarlık İstanbul Dergisi, 9, 2016.</span></li>
+    </ul>
+
+    <h3 data-i18n="h_talks">Vorträge (Auswahl)</h3>
+    <ul class="plain">
+      <li>Trade, Security and Information Flow on the Ottoman-Habsburg Frontier: The 1585 Szolnok Fair Raid. <span class="meta">Early Modern Ottoman Studies Conference III (EMOS III), İstanbul Üniversitesi, September 2025.</span></li>
+      <li>100 Jahre Republik – Türkei zwischen Ost und West. <span class="meta">LMU München, Dezember 2023.</span></li>
+      <li>Türkei – 100 Jahre Republik: Rückblick, Gegenwart, Ausblick. <span class="meta">Bayerischer Landtag, Maximilianeum, Saal Weiße Rose, Oktober 2023.</span></li>
+      <li>Hans Schiltberger – Als Bayer unter Türken und Tataren. <span class="meta">Yunus Emre Institut, Berlin, Juni 2022.</span></li>
+      <li>Die Sprachen der osmanischen Kanzlei und die Urkundensprachen am Sultanshof. <span class="meta">Internationale Tagung zur europäischen Kanzleisprachenforschung, Staatsarchiv Augsburg, Oktober 2020.</span></li>
+      <li>From Samatya to Kasımpaşa: Cultural and Religious Diversity in Istanbul through the Eyes of German Travelers. <span class="meta">The Manifold Faces of the East, Bukarest, 2019.</span></li>
+    </ul>
+
+
+  </div>
+  </details>
+</section>
+<section id="lab" class="reveal">
+  <details class="acc">
+  <summary><div><span class="tag" data-i18n="tag_lab">Web-Apps · Open Source</span><h2 data-i18n="h_lab">Digital Humanities Lab<span class="sub" data-i18n="s_lab">Digitale Werkzeuge für Forschung und Lehre</span></h2></div></summary>
+  <div class="sectionbody">
+    <p data-i18n="p_lab">
+      Interaktive, lokal laufende Webanwendungen — entwickelt als Ergänzung zu Forschung und Unterricht.
+    </p>
+
+    <h3 data-i18n="g_daz">DaZ &amp; Sprachdidaktik</h3>
+    <div class="cards">
+
+      <article class="card reveal">
+        <span class="tag" data-i18n="t_tdn">Türkisch · Kursnotizen</span>
+        <h4>Türkçe Ders Notları</h4>
+        <p data-i18n="c_tdn">Kursbegleitende Notizen und Materialien für Türkisch (Stufen 1–4).</p>
+        <a class="go" href="projects/turkce-ders-notlari/" data-i18n="c_open5">Projekt öffnen →</a>
+      </article>
+
+      <article class="card reveal">
+        <span class="tag">DaZ · Linguistik</span>
+        <h4>Kontrastive Linguistik DE ↔ TR</h4>
+        <p data-i18n="c_daz">Eine DaZ-Lernplattform zum systematischen Sprachvergleich Deutsch–Türkisch.</p>
+        <a class="go" href="projects/daz-sprachvergleich/" data-i18n="c_open2">Projekt öffnen →</a>
+      </article>
+
+      <article class="card reveal">
+        <span class="tag" data-i18n="t_deutsch">Deutsch lernen</span>
+        <h4>YAMA Deutsch</h4>
+        <p data-i18n="c_deutsch">Ein Lernbegleiter für die deutsche Sprache: Fehlerkatalog, Diagnose und Übungen.</p>
+        <a class="go" href="projects/yama-deutsch/" data-i18n="c_open6">Projekt öffnen →</a>
+      </article>
+
+    </div>
+
+    <h3 data-i18n="g_turk">Turkologie</h3>
+    <div class="cards">
+
+      <article class="card reveal">
+        <span class="tag" data-i18n="t_osman">Osmanisch · Lesen</span>
+        <h4>Osmanisch-Lesetrainer</h4>
+        <p data-i18n="c_osman">Osmanisch-Texte Wort für Wort lesen: Umschrift, Bedeutung und Regel — beamer-tauglich.</p>
+        <a class="go" href="projects/osmanisch-lektuere/" data-i18n="c_open8">Projekt öffnen →</a>
+      </article>
+
+      <article class="card reveal">
+        <span class="tag">Turkologie</span>
+        <h4>Turkologie Guide</h4>
+        <p data-i18n="c_turk">Ein interaktiver Wegweiser durch das Studium der Turkologie.</p>
+        <a class="go" href="projects/turkologie-guide/" data-i18n="c_open3">Projekt öffnen →</a>
+      </article>
+
+      <article class="card reveal">
+        <span class="tag">Dante · DE/EN/TR</span>
+        <h4>Dante Digital Monument</h4>
+        <p data-i18n="c_dante">Ein mehrsprachiges digitales Denkmalprojekt zu Dante und dem Dante-Brunnen.</p>
+        <a class="go" href="projects/dante-brunnen/" data-i18n="c_open">Projekt öffnen →</a>
+      </article>
+
+    </div>
+  </div>
+  </details>
+</section>
+
+<section id="kultur" class="reveal">
+  <details class="acc">
+  <summary><div><span class="tag" data-i18n="tag_kultur">Kulturvermittlung · Reisen</span><h2 data-i18n="h_kultur">Kultur<span class="sub" data-i18n="s_kultur">Kulturvermittlung · Museen · Reiseführung</span></h2></div></summary>
+  <div class="sectionbody">
+    <p data-i18n="p_kultur">
+      Neben der akademischen Arbeit bin ich als lizenzierter Reiseleiter für die Türkei tätig.
+      Hier verbinden sich Wissenschaft und Kulturvermittlung.
+    </p>
+    <div class="cards">
+
+      <article class="card reveal">
+        <span class="tag" data-i18n="t_tours">Reiseführung</span>
+        <h4>YAMA Tours</h4>
+        <p data-i18n="c_tours">Anatolische Kulturrouten: Natur, Regionen und ein digitaler Reisebegleiter.</p>
+        <a class="go" href="projects/yama-tours/" data-i18n="c_open7">Projekt öffnen →</a>
+      </article>
+
+      <article class="card reveal">
+        <span class="tag" data-i18n="t_museum">Museumsführung</span>
+        <h4>YAMA Museum Guide</h4>
+        <p data-i18n="c_museum">Ein digitaler Begleiter für Museums- und Kulturbesuche.</p>
+        <a class="go" href="projects/museum-guide/" data-i18n="c_open4">Projekt öffnen →</a>
+      </article>
+
+    </div>
+  </div>
+  </details>
+</section>
+</div><!-- /acc-grid -->
+
+<!-- ═══════════ KONTAKT / FOOTER ═══════════ -->
+<footer id="kontakt">
+  <p>
+    <strong data-i18n="f_contact">Kontakt:</strong>
+    <span data-i18n="f_via">über meine LMU-Profile (siehe oben)</span>
+    <span> · </span>
+    <a href="impressum.html" data-i18n="f_imp">Impressum &amp; Datenschutz</a>
+  </p>
+  <p class="disclaimer" data-i18n="f_disc">
+    Die auf diesen Seiten geäußerten Ansichten geben ausschließlich die persönliche Meinung des
+    Autors wieder und stellen keine offizielle Stellungnahme der LMU München dar.
+  </p>
+  <p style="margin-top:14px">© 2026 Dr. Ergün Özsoy</p>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Üç dilli metin sözlüğü — DE varsayılan (HTML içinde), EN/TR burada ── */
+const I18N = {
+  en: {
+    role:"Turkology · German Studies — Ludwig Maximilian University of Munich",
+    affil_lbl:"Official LMU Profiles:",
+    affil1:"Institute for Near and Middle Eastern Studies",
+    hello:"Welcome",
+    nav_teaching:"Teaching", nav_research:"Research", nav_lab:"Digital Humanities Lab",
+    nav_kultur:"Culture", nav_kontakt:"Contact",
+    intro:"Welcome to my personal academic homepage. This site supplements my official LMU profiles with up-to-date information on teaching, research and digital projects.",
+    h_teaching:"Teaching", s_teaching:"Lehre · Dersler",
+    tag_teaching:"Courses · Summer 2026", tag_research:"Publications · Talks",
+    portals_lbl:"Course portals:",
+    applink:"Companion web app →", applink2:"Companion web app →", applink3:"Companion web app →", applink4:"Companion web app →",
+    h_current:"Current courses",
+    h_research:"Research", s_research:"Forschung · Araştırma",
+    h_pub:"Publications",
+    profiles_lbl:"Profiles:",
+    h_books:"Books",
+    h_articles:"Articles & chapters",
+    h_transl:"Translations",
+    h_talks:"Selected talks",
+    h_wp:"Working papers & ongoing projects",
+    wp_tb:"— book project, in preparation",
+    tag_lab:"Web apps · Open source", tag_kultur:"Cultural mediation · Travel",
+    g_daz:"German as a Second Language & Language Didactics", g_turk:"Turkology",
+    t_tdn:"Turkish · Course notes", c_tdn:"Course notes and materials for Turkish (levels 1–4).", c_open5:"Open project →",
+    t_deutsch:"Learning German", c_deutsch:"A learning companion for German: error catalogue, diagnostics and exercises.", c_open6:"Open project →",
+    t_osman:"Ottoman · Reading", c_osman:"Read Ottoman texts word by word: transliteration, meaning and rule — beamer-ready.", c_open8:"Open project →",
+    t_tours:"Tour guiding", c_tours:"Anatolian cultural routes: nature, regions and a digital travel companion.", c_open7:"Open project →",
+    h_lab:"Digital Humanities Lab", s_lab:"Digital tools for research and teaching",
+    p_lab:"Interactive, locally running web applications — developed to complement research and teaching.",
+    c_dante:"A multilingual digital monument project on Dante and the Dante fountain.",
+    c_daz:"A German-as-a-second-language platform for systematic German–Turkish language comparison.",
+    c_turk:"An interactive guide through the study of Turkology.",
+    c_open:"Open project →", c_open2:"Open project →", c_open3:"Open project →", c_open4:"Open project →",
+    h_kultur:"Culture", s_kultur:"Cultural mediation · Museums · Tour guiding",
+    p_kultur:"Alongside my academic work I am a licensed tour guide for Turkey. This is where scholarship and cultural mediation meet.",
+    t_museum:"Museum guiding",
+    c_museum:"A digital companion for museum and cultural visits.",
+    f_contact:"Contact:", f_via:"via my LMU profiles (see above)",
+    f_imp:"Legal notice & privacy",
+    f_disc:"The views expressed on these pages are solely those of the author and do not represent an official position of LMU Munich."
+  },
+  tr: {
+    role:"Türkoloji · Germanistik — Münih Ludwig Maximilian Üniversitesi",
+    affil_lbl:"Resmî LMU Profilleri:",
+    affil1:"Yakın ve Orta Doğu Araştırmaları Enstitüsü",
+    hello:"Hoş geldiniz",
+    nav_teaching:"Dersler", nav_research:"Araştırma", nav_lab:"Dijital Beşeri Bilimler Lab",
+    nav_kultur:"Kültür", nav_kontakt:"İletişim",
+    intro:"Kişisel akademik ana sayfama hoş geldiniz. Bu site, resmî LMU profillerimi dersler, araştırma ve dijital projeler hakkında güncel bilgilerle tamamlar.",
+    h_teaching:"Dersler", s_teaching:"Lehre · Teaching",
+    tag_teaching:"Dersler · 2026 Yaz", tag_research:"Yayınlar · Konuşmalar",
+    portals_lbl:"Ders portalları:",
+    applink:"Eşlik eden web uygulaması →", applink2:"Eşlik eden web uygulaması →", applink3:"Eşlik eden web uygulaması →", applink4:"Eşlik eden web uygulaması →",
+    h_current:"Güncel dersler",
+    h_research:"Araştırma", s_research:"Forschung · Research",
+    h_pub:"Yayınlar",
+    profiles_lbl:"Profiller:",
+    h_books:"Kitaplar",
+    h_articles:"Makaleler ve bölümler",
+    h_transl:"Çeviriler",
+    h_talks:"Seçilmiş konuşmalar",
+    h_wp:"Devam eden çalışmalar",
+    wp_tb:"— kitap projesi, hazırlık aşamasında",
+    tag_lab:"Web uygulamaları · Açık kaynak", tag_kultur:"Kültür aktarımı · Gezi",
+    g_daz:"DaZ ve Dil Didaktiği", g_turk:"Türkoloji",
+    t_tdn:"Türkçe · Ders notları", c_tdn:"Türkçe dersleri için notlar ve materyaller (1–4. seviye).", c_open5:"Projeyi aç →",
+    t_deutsch:"Almanca öğrenme", c_deutsch:"Almanca için öğrenme yoldaşı: hata kataloğu, tanı ve alıştırmalar.", c_open6:"Projeyi aç →",
+    t_osman:"Osmanlıca · Okuma", c_osman:"Osmanlıca metinleri kelime kelime okuyun: transkripsiyon, anlam ve kural — beamer'a uygun.", c_open8:"Projeyi aç →",
+    t_tours:"Turist rehberliği", c_tours:"Anadolu kültür rotaları: doğa, bölgeler ve dijital gezi rehberi.", c_open7:"Projeyi aç →",
+    h_lab:"Dijital Beşeri Bilimler Lab", s_lab:"Araştırma ve öğretim için dijital araçlar",
+    p_lab:"Araştırma ve derslere eşlik etmek üzere geliştirilen, yerel çalışan interaktif web uygulamaları.",
+    c_dante:"Dante ve Dante Çeşmesi üzerine çok dilli bir dijital anıt projesi.",
+    c_daz:"Almanca–Türkçe sistematik dil karşılaştırması için bir DaZ öğrenme platformu.",
+    c_turk:"Türkoloji eğitimi için interaktif bir yol haritası.",
+    c_open:"Projeyi aç →", c_open2:"Projeyi aç →", c_open3:"Projeyi aç →", c_open4:"Projeyi aç →",
+    h_kultur:"Kültür", s_kultur:"Kültür aktarımı · Müzeler · Turist rehberliği",
+    p_kultur:"Akademik çalışmalarımın yanı sıra Türkiye için lisanslı turist rehberiyim. Bilim ile kültür aktarımı burada buluşuyor.",
+    t_museum:"Müze rehberliği",
+    c_museum:"Müze ve kültür gezileri için dijital bir yol arkadaşı.",
+    f_contact:"İletişim:", f_via:"LMU profillerim üzerinden (yukarıda)",
+    f_imp:"Künye ve Gizlilik",
+    f_disc:"Bu sayfalarda ifade edilen görüşler yalnızca yazara aittir; LMU München'in resmî görüşünü yansıtmaz."
+  }
+};
+
+/* DE metinlerini ilk yüklemede DOM'dan yakala (geri dönüş için) */
+const DE = {};
+document.querySelectorAll("[data-i18n]").forEach(el => { DE[el.dataset.i18n] = el.innerHTML; });
+
+function applyLang(lang){
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.dataset.i18n;
+    el.innerHTML = (lang === "de") ? DE[key] : (I18N[lang][key] ?? DE[key]);
+  });
+  document.documentElement.lang = lang;
+  document.querySelectorAll(".langs button").forEach(b => b.classList.toggle("on", b.dataset.lang === lang));
+  try { localStorage.setItem("oezsoy-lang", lang); } catch(e) {}
+}
+
+function setLang(lang, instant){
+  const wrap = document.querySelector(".wrap");
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (instant || reduced) { applyLang(lang); return; }
+  wrap.classList.add("lang-switching");
+  setTimeout(() => {
+    applyLang(lang);
+    wrap.classList.remove("lang-switching");
+  }, 180);
+}
+
+document.querySelectorAll(".langs button").forEach(b =>
+  b.addEventListener("click", () => setLang(b.dataset.lang))
+);
+
+/* Kayarken belirme */
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window){
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, {threshold: .12});
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+} else {
+  document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
+}
+
+/* Açılan akordeon kartı tam satıra yayılsın */
+document.querySelectorAll(".acc-grid details").forEach(d =>
+  d.addEventListener("toggle", () => {
+    d.closest("section").classList.toggle("expanded", d.open);
+  })
+);
+
+/* Menüden bölüme gidince kapalı akordeonu aç */
+document.querySelectorAll("nav a").forEach(a =>
+  a.addEventListener("click", () => {
+    const sec = document.querySelector(a.getAttribute("href"));
+    const d = sec && sec.querySelector("details");
+    if (d) d.open = true;
+  })
+);
+
+/* Kaydedilmiş dil tercihi varsa uygula */
+try {
+  const saved = localStorage.getItem("oezsoy-lang");
+  if (saved && saved !== "de") setLang(saved, true);
+} catch(e) {}
+
+
+</script>
+
+</body>
+</html>
