@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Osmanlıca Okuma Antrenörü · YAMA</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   MOTOR — bu bölümü değiştirmenize gerek yok.
+   İçerik en aşağıda, <script id="icerik"> içinde.
+═══════════════════════════════════════════════════════════════ */
+:root{
+  --parsomen:#F4EDDD;
+  --parsomen-koyu:#EAE0C8;
+  --murekkep:#2B2119;      /* siyah mürekkep */
+  --surh:#A6362B;          /* kırmızı - klasik yazmalarda hareke/başlık */
+  --altin:#B08A3E;         /* tezhip altını */
+  --soluk:#8A7D63;
+  --cizgi:#D9CBAA;
+  --kart:#FBF6EA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--parsomen);
+  color:var(--murekkep);
+  font-family:"Iowan Old Style",Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+  line-height:1.6;
+  /* ince parşömen dokusu */
+  background-image:radial-gradient(circle at 20% 30%, rgba(176,138,62,.04) 0, transparent 40%),
+                   radial-gradient(circle at 80% 70%, rgba(166,54,43,.03) 0, transparent 40%);
+}
+.osman{
+  font-family:"Noto Naskh Arabic","Amiri","Scheherazade New","Traditional Arabic","Times New Roman",serif;
+  direction:rtl;
+  font-feature-settings:"liga" 1,"calt" 1;
+}
+
+/* ── Üst şerit ── */
+header{
+  border-bottom:2px solid var(--altin);
+  background:linear-gradient(var(--parsomen),var(--parsomen-koyu));
+}
+.bar{max-width:1000px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;flex-direction:column;gap:2px}
+.brand .t{font-size:1.35rem;font-weight:600;letter-spacing:.01em}
+.brand .s{font-size:.8rem;color:var(--soluk);letter-spacing:.06em;text-transform:uppercase}
+.brand .osman-title{font-size:1.5rem;color:var(--surh)}
+
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{
+  font:inherit;font-size:.85rem;border:1px solid var(--cizgi);background:var(--kart);
+  color:var(--murekkep);padding:7px 13px;border-radius:5px;cursor:pointer;transition:all .15s
+}
+.btn:hover{border-color:var(--altin);background:#fff}
+.btn.on{background:var(--surh);border-color:var(--surh);color:#fff}
+.btn:focus-visible{outline:2px solid var(--altin);outline-offset:2px}
+
+/* ── Ders seçici ── */
+.lessons{max-width:1000px;margin:0 auto;padding:16px 24px 0;display:flex;gap:8px;flex-wrap:wrap}
+.lesson-tab{
+  font:inherit;font-size:.9rem;border:none;border-bottom:3px solid transparent;
+  background:none;color:var(--soluk);padding:6px 4px;cursor:pointer;font-weight:500
+}
+.lesson-tab:hover{color:var(--murekkep)}
+.lesson-tab.on{color:var(--surh);border-bottom-color:var(--surh)}
+
+/* ── Ana alan ── */
+main{max-width:1000px;margin:0 auto;padding:28px 24px 80px}
+.lesson-head{margin-bottom:8px}
+.lesson-head h1{font-size:1.7rem;font-weight:600}
+.lesson-head .konu{color:var(--surh);font-size:.95rem;letter-spacing:.04em;margin-top:2px}
+.lesson-note{
+  background:var(--kart);border-left:4px solid var(--altin);
+  padding:14px 18px;margin:20px 0 28px;border-radius:0 6px 6px 0;font-size:.98rem
+}
+.lesson-note .osman{font-size:1.3rem}
+
+.progress{font-size:.82rem;color:var(--soluk);margin-bottom:14px}
+
+/* ── Kelime kartları ── */
+.words{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.word{
+  background:var(--kart);border:1px solid var(--cizgi);border-radius:8px;
+  padding:18px 16px 16px;cursor:pointer;transition:all .18s;position:relative;overflow:hidden
+}
+.word:hover{border-color:var(--altin);transform:translateY(-2px);box-shadow:0 6px 16px rgba(43,33,25,.08)}
+.word:focus-visible{outline:2px solid var(--surh);outline-offset:2px}
+.word .ar{font-size:2.4rem;text-align:center;color:var(--murekkep);min-height:1.4em;line-height:1.4}
+.word .reveal{
+  margin-top:12px;padding-top:12px;border-top:1px dashed var(--cizgi);
+  opacity:0;max-height:0;transition:opacity .25s,max-height .25s;overflow:hidden;text-align:center
+}
+.word.open .reveal{opacity:1;max-height:160px}
+.word .translit{font-size:1.15rem;font-weight:600;color:var(--surh)}
+.word .mean{font-size:.92rem;color:var(--soluk);margin-top:3px}
+.word .rule{font-size:.8rem;color:var(--soluk);margin-top:8px;font-style:italic;line-height:1.4}
+.word .hint{position:absolute;top:8px;left:10px;font-size:.7rem;color:var(--cizgi);letter-spacing:.05em}
+.word.open .hint{color:var(--altin)}
+
+/* ── Metin okuma ── */
+.text-block{display:flex;flex-direction:column;gap:2px}
+.line{
+  background:var(--kart);border:1px solid transparent;border-radius:8px;
+  padding:16px 20px;cursor:pointer;transition:all .15s
+}
+.line:hover{border-color:var(--cizgi)}
+.line.active{border-color:var(--altin);box-shadow:0 0 0 1px var(--altin)}
+.line .ar{font-size:2rem;text-align:right;line-height:1.9}
+.line .tr{
+  opacity:0;max-height:0;overflow:hidden;transition:opacity .25s,max-height .3s;
+  color:var(--surh);font-size:1.05rem;margin-top:0
+}
+.line.open .tr{opacity:1;max-height:120px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--cizgi)}
+.line .de{color:var(--soluk);font-size:.95rem;font-style:italic;margin-top:4px}
+
+/* ── Beamer modu ── */
+body.beamer{font-size:20px}
+body.beamer .word .ar{font-size:3.6rem}
+body.beamer .word .translit{font-size:1.7rem}
+body.beamer .word .mean{font-size:1.2rem}
+body.beamer .line .ar{font-size:3.2rem;line-height:2}
+body.beamer .line .tr{font-size:1.6rem}
+body.beamer .line .de{font-size:1.3rem}
+body.beamer .lesson-note .osman{font-size:2rem}
+body.beamer main{max-width:1200px}
+
+/* ── Klavye ipucu ── */
+.kbd-hint{
+  position:fixed;bottom:14px;right:16px;font-size:.78rem;color:var(--soluk);
+  background:var(--kart);border:1px solid var(--cizgi);border-radius:6px;padding:6px 12px;
+  opacity:.85
+}
+.kbd-hint kbd{
+  font-family:inherit;background:var(--parsomen-koyu);border:1px solid var(--cizgi);
+  border-radius:3px;padding:0 5px;font-size:.75rem
+}
+@media(max-width:600px){.kbd-hint{display:none}}
+
+footer{text-align:center;color:var(--soluk);font-size:.82rem;padding:24px;border-top:1px solid var(--cizgi)}
+footer .osman{color:var(--surh);font-size:1rem}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <div class="brand">
+      <span class="osman-title osman" data-i18n="title_ar">عثمانلیجه</span>
+      <span class="t" data-i18n="title">Osmanlıca Okuma Antrenörü</span>
+      <span class="s">YAMA · Digital Humanities Lab</span>
+    </div>
+    <div class="controls">
+      <button class="btn" id="beamerBtn" data-i18n="beamer">⛶ Beamer-Modus</button>
+      <button class="btn" id="revealAllBtn" data-i18n="revealAll">Hepsini aç</button>
+      <div class="langs">
+        <button class="btn lang" data-lang="tr">TR</button>
+        <button class="btn lang" data-lang="de">DE</button>
+        <button class="btn lang" data-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+  <div class="lessons" id="lessonTabs"></div>
+</header>
+
+<main id="app"></main>
+
+<div class="kbd-hint">
+  <kbd>←</kbd> <kbd>→</kbd> <span data-i18n="kbd_nav">gez</span> ·
+  <kbd>Space</kbd> <span data-i18n="kbd_reveal">aç/kapa</span> ·
+  <kbd>B</kbd> Beamer
+</div>
+
+<footer>
+  <span class="osman">بر قانات الهام، اوتكی عقل و منطق</span><br>
+  <span data-i18n="motto">Bir kanat ilham, öteki akıl ve mantık — YAMA</span>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     İÇERİK — SADECE BURAYI DÜZENLEYİN.
+     Her ders bir nesnedir. İki tür alıştırma var:
+       • type:"words" → kelime kartları (tıkla-aç)
+       • type:"text"  → satır satır metin okuma
+     Osmanlıca metinleri "ar" alanına yazın (sağdan sola otomatik).
+     Buraya KENDİ hazırladığınız içeriği koyun; telifli kitaplardan
+     birebir kopyalamayın.
+═══════════════════════════════════════════════════════════════ -->
+<script id="icerik" type="application/json">
+{
+  "lessons": [
+    {
+      "id": "hafta1",
+      "title": {
+        "tr": "1. Hafta — Türkçe Kelimelerin İmlâsı",
+        "de": "Woche 1 — Rechtschreibung türkischer Wörter",
+        "en": "Week 1 — Spelling of Turkish Words"
+      },
+      "konu": {
+        "tr": "Sesli harflerin gösterimi: elif · vav · ye",
+        "de": "Vokale: elif · vav · ye",
+        "en": "Writing vowels: elif · vav · ye"
+      },
+      "note": {
+        "tr": "Osmanlıcada Türkçe kelimelerde sesli harfler <b>harf</b> ile gösterilir, hareke ile değil: <b>a</b> için elif (ا), <b>o/ö/u/ü</b> için vav (و), <b>ı/i</b> için ye (ی). Aşağıdaki kartlara tıklayın; okunuşu ve kuralı açılır.",
+        "de": "Im Türkischen werden die Vokale mit <b>Buchstaben</b> geschrieben, nicht mit Hareke: <b>a</b> mit elif (ا), <b>o/ö/u/ü</b> mit vav (و), <b>ı/i</b> mit ye (ی). Klicken Sie auf die Karten für Umschrift und Regel.",
+        "en": "In Ottoman Turkish, vowels are written with <b>letters</b>, not with hareke: <b>a</b> = elif (ا), <b>o/ö/u/ü</b> = vav (و), <b>ı/i</b> = ye (ی). Click the cards for transliteration and rule."
+      },
+      "type": "words",
+      "items": [
+        {
+          "ar": "قول",
+          "translit": "kul",
+          "mean": {
+            "tr": "kul",
+            "de": "Diener",
+            "en": "servant"
+          },
+          "rule": {
+            "tr": "kalın 'k' → kaf (ق), 'u' → vav (و)",
+            "de": "hartes k → kaf, u → vav",
+            "en": "hard k → kaf (ق), u → vav (و)"
+          }
+        },
+        {
+          "ar": "كول",
+          "translit": "kül",
+          "mean": {
+            "tr": "kül",
+            "de": "Asche",
+            "en": "ashes"
+          },
+          "rule": {
+            "tr": "ince 'k' → kef (ك), 'ü' → vav (و)",
+            "de": "weiches k → kef, ü → vav",
+            "en": "soft k → kef (ك), ü → vav (و)"
+          }
+        },
+        {
+          "ar": "دده",
+          "translit": "dede",
+          "mean": {
+            "tr": "dede",
+            "de": "Großvater",
+            "en": "grandfather"
+          },
+          "rule": {
+            "tr": "iki 'e' de yazılmaz (klasik imla)",
+            "de": "beide 'e' werden nicht geschrieben",
+            "en": "both 'e' are not written (classical spelling)"
+          }
+        },
+        {
+          "ar": "قیه",
+          "translit": "kaya",
+          "mean": {
+            "tr": "kaya",
+            "de": "Fels",
+            "en": "rock"
+          },
+          "rule": {
+            "tr": "ilk 'a' elifsiz, orta 'y' → ye, son 'a' → he (ه)",
+            "de": "erstes a ohne elif, y → ye, letztes a → he",
+            "en": "first a without elif, y → ye, final a → he (ه)"
+          }
+        },
+        {
+          "ar": "بایراق",
+          "translit": "bayrak",
+          "mean": {
+            "tr": "bayrak",
+            "de": "Fahne",
+            "en": "flag"
+          },
+          "rule": {
+            "tr": "orta 'a' yazılır → elif; kalın 'k' → kaf",
+            "de": "mittleres a wird geschrieben, hartes k → kaf",
+            "en": "middle a is written → elif; hard k → kaf"
+          }
+        },
+        {
+          "ar": "طاش",
+          "translit": "taş",
+          "mean": {
+            "tr": "taş",
+            "de": "Stein",
+            "en": "stone"
+          },
+          "rule": {
+            "tr": "kalın 't' → tı (ط), 'ş' → şın (ش)",
+            "de": "hartes t → tı, ş → şın",
+            "en": "hard t → tı (ط), ş → şın (ش)"
+          }
+        },
+        {
+          "ar": "كوپری",
+          "translit": "köprü",
+          "mean": {
+            "tr": "köprü",
+            "de": "Brücke",
+            "en": "bridge"
+          },
+          "rule": {
+            "tr": "'ö' ve 'ü' → vav; son 'ü' vav ile",
+            "de": "ö und ü → vav",
+            "en": "ö and ü → vav"
+          }
+        },
+        {
+          "ar": "ایکی",
+          "translit": "iki",
+          "mean": {
+            "tr": "iki",
+            "de": "zwei",
+            "en": "two"
+          },
+          "rule": {
+            "tr": "baştaki 'i' → elif+ye, sondaki 'i' → ye",
+            "de": "anlautendes i → elif+ye, auslautendes i → ye",
+            "en": "initial i → elif+ye, final i → ye"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hafta1-metin",
+      "title": {
+        "tr": "1. Hafta — Kısa Alıştırma Metni",
+        "de": "Woche 1 — Kurzer Übungstext",
+        "en": "Week 1 — Short Practice Text"
+      },
+      "konu": {
+        "tr": "Satır satır okuma denemesi",
+        "de": "Zeilenweise Leseübung",
+        "en": "Line-by-line reading exercise"
+      },
+      "note": {
+        "tr": "Her satıra tıklayın; Osmanlıca metnin okunuşu (transkripsiyon) ve çevirisi açılır. Bu örnek satırlar dilbilgisi alıştırması için oluşturulmuştur.",
+        "de": "Klicken Sie auf jede Zeile; Umschrift und Übersetzung erscheinen. Diese Beispielzeilen dienen der Grammatikübung.",
+        "en": "Click each line; the transliteration and translation appear. These example lines were created for grammar practice."
+      },
+      "type": "text",
+      "items": [
+        {
+          "ar": "بو بر قلمدر",
+          "tr": "Bu bir kalemdir.",
+          "de": "Dies ist ein Stift.",
+          "en": "This is a pen."
+        },
+        {
+          "ar": "او كتاب یكیدر",
+          "tr": "O kitap yenidir.",
+          "de": "Jenes Buch ist neu.",
+          "en": "That book is new."
+        },
+        {
+          "ar": "قاپو آچیقدر",
+          "tr": "Kapı açıktır.",
+          "de": "Die Tür ist offen.",
+          "en": "The door is open."
+        },
+        {
+          "ar": "طاش آغیردر",
+          "tr": "Taş ağırdır.",
+          "de": "Der Stein ist schwer.",
+          "en": "The stone is heavy."
+        }
+      ]
+    },
+    {
+      "id": "hafta2-hareke",
+      "title": {
+        "tr": "2. Hafta — Hareke İşaretleri",
+        "de": "Woche 2 — Hareke-Zeichen",
+        "en": "Week 2 — Hareke Signs"
+      },
+      "konu": {
+        "tr": "Kısa sesler: üstün · esre · ötre · sükûn · şedde",
+        "de": "Kurzvokale & Zeichen",
+        "en": "Short vowels: üstün · esre · ötre · sükûn · şedde"
+      },
+      "note": {
+        "tr": "Arapça/Farsça kelimelerde <b>kısa sesler hareke</b> ile gösterilir. Osmanlıcada hareke genelde yazılmaz; burada öğrenmek için gösteriyoruz. <b>Üstün</b> (َ) = a/e · <b>Esre</b> (ِ) = ı/i · <b>Ötre</b> (ُ) = u/ü · <b>Sükûn</b> (ْ) = sessiz · <b>Şedde</b> (ّ) = harfi iki kez okutur. Karta tıklayın.",
+        "de": "In arabischen/persischen Wörtern werden <b>Kurzvokale mit Hareke</b> angezeigt: <b>üstün</b> = a/e · <b>esre</b> = ı/i · <b>ötre</b> = u/ü · <b>sükûn</b> = vokallos · <b>şedde</b> = Verdopplung.",
+        "en": "In Arabic/Persian words, <b>short vowels use hareke</b>. In Ottoman they are usually omitted; shown here for learning. <b>Üstün</b> = a/e · <b>Esre</b> = ı/i · <b>Ötre</b> = u/ü · <b>Sükûn</b> = vowelless · <b>Şedde</b> = doubles the letter."
+      },
+      "type": "words",
+      "items": [
+        {
+          "ar": "وَطَن",
+          "translit": "vatan",
+          "mean": {
+            "tr": "vatan, yurt",
+            "de": "Heimat",
+            "en": "homeland"
+          },
+          "rule": {
+            "tr": "vav+üstün → 'va', tı+üstün → 'ta', nun → 'n'",
+            "de": "üstün gibt a/e",
+            "en": "vav+üstün → 'va', tı+üstün → 'ta', nun → 'n'"
+          }
+        },
+        {
+          "ar": "عِلْم",
+          "translit": "ilm",
+          "mean": {
+            "tr": "ilim, bilgi",
+            "de": "Wissen",
+            "en": "knowledge"
+          },
+          "rule": {
+            "tr": "esre → 'i', lâm+sükûn → sessiz 'l'",
+            "de": "esre = i, sükûn = vokallos",
+            "en": "esre → 'i', lâm+sükûn → silent 'l'"
+          }
+        },
+        {
+          "ar": "عُلوم",
+          "translit": "ulûm",
+          "mean": {
+            "tr": "ilimler",
+            "de": "Wissenschaften",
+            "en": "sciences"
+          },
+          "rule": {
+            "tr": "ötre → 'u', vav uzun 'û' sesi",
+            "de": "ötre = u, vav = langes û",
+            "en": "ötre → 'u', vav = long 'û'"
+          }
+        },
+        {
+          "ar": "مَكتوب",
+          "translit": "mektûb",
+          "mean": {
+            "tr": "mektup, yazılmış",
+            "de": "Brief",
+            "en": "letter, written"
+          },
+          "rule": {
+            "tr": "kef+sükûn → sessiz 'k'; vav → uzun 'û'",
+            "de": "sükûn macht k vokallos",
+            "en": "kef+sükûn → silent 'k'; vav → long 'û'"
+          }
+        },
+        {
+          "ar": "مُعَلِّم",
+          "translit": "muallim",
+          "mean": {
+            "tr": "öğretmen",
+            "de": "Lehrer",
+            "en": "teacher"
+          },
+          "rule": {
+            "tr": "şedde (ّ) lâm'ı iki kez okutur: mu-al-lim",
+            "de": "şedde verdoppelt den Buchstaben",
+            "en": "şedde doubles the lâm: mu-al-lim"
+          }
+        },
+        {
+          "ar": "مُنَوَّر",
+          "translit": "münevver",
+          "mean": {
+            "tr": "aydınlanmış",
+            "de": "erleuchtet",
+            "en": "enlightened"
+          },
+          "rule": {
+            "tr": "vav üzerinde şedde: mü-nev-ver",
+            "de": "şedde auf vav",
+            "en": "şedde on vav: mü-nev-ver"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hafta2-kef",
+      "title": {
+        "tr": "2. Hafta — Kef'in Beş Yüzü (ك)",
+        "de": "Woche 2 — Die fünf Lesungen des Kef",
+        "en": "Week 2 — The Five Faces of Kef (ك)"
+      },
+      "konu": {
+        "tr": "Tek harf ك: k · g · nazal n · y · v okunur",
+        "de": "Ein Buchstabe, fünf Lesungen",
+        "en": "One letter ك: read as k · g · nasal n · y · v"
+      },
+      "note": {
+        "tr": "<b>ك (kef)</b> Osmanlıcanın en çok yüzü olan harfidir: aynı harf beş ayrı ses verebilir. Bağlam okumayı belirler — bu yüzden kelimeleri tanımak gerekir. Her kart, kef'in bir okunuşunu gösterir.",
+        "de": "<b>ك (kef)</b> hat fünf Lesungen: k, g, nasales n, y und v. Der Kontext bestimmt die Aussprache.",
+        "en": "<b>ك (kef)</b> is the most versatile letter in Ottoman: the same letter can give five sounds. Context determines the reading — so you must recognise the words. Each card shows one reading of kef."
+      },
+      "type": "words",
+      "items": [
+        {
+          "ar": "كتاب",
+          "translit": "kitâb",
+          "mean": {
+            "tr": "kitap",
+            "de": "Buch",
+            "en": "book"
+          },
+          "rule": {
+            "tr": "① Kef-i Arabî → ince 'k'",
+            "de": "① kef = k",
+            "en": "① Arabic kef → soft 'k'"
+          }
+        },
+        {
+          "ar": "كرچك",
+          "translit": "gerçek",
+          "mean": {
+            "tr": "gerçek",
+            "de": "wahr",
+            "en": "true, real"
+          },
+          "rule": {
+            "tr": "② Kâf-ı Fârisî → 'g' sesi",
+            "de": "② kef = g",
+            "en": "② Persian kâf → 'g' sound"
+          }
+        },
+        {
+          "ar": "دكز",
+          "translit": "deñiz",
+          "mean": {
+            "tr": "deniz",
+            "de": "Meer",
+            "en": "sea"
+          },
+          "rule": {
+            "tr": "③ Kâf-ı nûnî → nazal 'ñ' (n+g)",
+            "de": "③ kef = nasales n",
+            "en": "③ nasal kâf → 'ñ' (n+g)"
+          }
+        },
+        {
+          "ar": "اكر",
+          "translit": "eğer",
+          "mean": {
+            "tr": "eğer, şayet",
+            "de": "wenn",
+            "en": "if"
+          },
+          "rule": {
+            "tr": "④ Kâf-ı yâî → yumuşak 'ğ'",
+            "de": "④ kef = weiches ğ",
+            "en": "④ yâî kâf → soft 'ğ'"
+          }
+        },
+        {
+          "ar": "كوكرجن",
+          "translit": "güvercin",
+          "mean": {
+            "tr": "güvercin",
+            "de": "Taube",
+            "en": "pigeon"
+          },
+          "rule": {
+            "tr": "⑤ Kâf-ı vâvî → eski imlada 'v' okunur",
+            "de": "⑤ kef = v",
+            "en": "⑤ vâvî kâf → read as 'v' in old spelling"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hafta2-arapca",
+      "title": {
+        "tr": "2. Hafta — Arapça Kalıplar",
+        "de": "Woche 2 — Arabische Wortmuster",
+        "en": "Week 2 — Arabic Patterns"
+      },
+      "konu": {
+        "tr": "İsm-i fâil (eden) · İsm-i mefûl (edilen) · ayın",
+        "de": "Partizipien & das Ayın",
+        "en": "Active participle · Passive participle · ayın"
+      },
+      "note": {
+        "tr": "Osmanlıca, Arapça kelime <b>kalıplarıyla</b> doludur. <b>İsm-i fâil</b> (fâ'il) işi <i>yapanı</i>, <b>ism-i mefûl</b> (mef'ûl) işe <i>maruz kalanı</i> gösterir. <b>Ayın (ع)</b> Türkçede olmayan bir harftir; a/ı/i/o/u/ü sesinde okunur, sessizken (') işareti alır.",
+        "de": "Osmanisch nutzt arabische <b>Wortmuster</b>: <b>ism-i fâil</b> (Handelnder) und <b>ism-i mefûl</b> (Erleidender). Das <b>Ayın (ع)</b> gibt es im Türkischen nicht.",
+        "en": "Ottoman is full of Arabic word <b>patterns</b>. <b>Ism-i fâil</b> shows the <i>doer</i>, <b>ism-i mefûl</b> the one <i>acted upon</i>. The <b>ayın (ع)</b> does not exist in Turkish; it is read as a/ı/i/o/u/ü, or marked (') when silent."
+      },
+      "type": "words",
+      "items": [
+        {
+          "ar": "كاتب",
+          "translit": "kâtib",
+          "mean": {
+            "tr": "yazan, kâtip",
+            "de": "Schreiber",
+            "en": "writer, scribe"
+          },
+          "rule": {
+            "tr": "fâ'il kalıbı: ك-ت-ب (yazmak) → yazan",
+            "de": "fâil-Muster: der Schreibende",
+            "en": "fâil pattern: ك-ت-ب (to write) → the writer"
+          }
+        },
+        {
+          "ar": "عالِم",
+          "translit": "âlim",
+          "mean": {
+            "tr": "bilen, âlim",
+            "de": "Gelehrter",
+            "en": "scholar, knower"
+          },
+          "rule": {
+            "tr": "fâ'il kalıbı: ع-ل-م (bilmek) → bilen",
+            "de": "fâil: der Wissende",
+            "en": "fâil pattern: ع-ل-م (to know) → the knower"
+          }
+        },
+        {
+          "ar": "مكتوب",
+          "translit": "mektûb",
+          "mean": {
+            "tr": "yazılmış, mektup",
+            "de": "Geschriebenes",
+            "en": "written, letter"
+          },
+          "rule": {
+            "tr": "mef'ûl kalıbı: ك-ت-ب → yazılan",
+            "de": "mefûl: das Geschriebene",
+            "en": "mefûl pattern: ك-ت-ب → the written"
+          }
+        },
+        {
+          "ar": "معلوم",
+          "translit": "ma'lûm",
+          "mean": {
+            "tr": "bilinen",
+            "de": "bekannt",
+            "en": "known"
+          },
+          "rule": {
+            "tr": "mef'ûl kalıbı: ع-ل-م → bilinen",
+            "de": "mefûl: das Bekannte",
+            "en": "mefûl pattern: ع-ل-م → the known"
+          }
+        },
+        {
+          "ar": "علم",
+          "translit": "'ilm",
+          "mean": {
+            "tr": "ilim (baş ayın)",
+            "de": "Wissen",
+            "en": "knowledge (initial ayın)"
+          },
+          "rule": {
+            "tr": "ع baştaki ayın: (') ile gösterilir",
+            "de": "anlautendes Ayın → (')",
+            "en": "initial ayın shown with (')"
+          }
+        },
+        {
+          "ar": "عرب",
+          "translit": "'Arab",
+          "mean": {
+            "tr": "Arap",
+            "de": "Araber",
+            "en": "Arab"
+          },
+          "rule": {
+            "tr": "ayın burada 'a' sesinde okunuyor",
+            "de": "Ayın hier als a",
+            "en": "ayın here read as 'a'"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   MOTOR MANTIĞI
+═══════════════════════════════════════════════════════════════ */
+const DATA = JSON.parse(document.getElementById("icerik").textContent);
+const UI = {
+  tr:{ beamer:"⛶ Beamer-Modus", revealAll:"Hepsini aç", revealNone:"Hepsini kapa",
+       kbd_nav:"gez", kbd_reveal:"aç/kapa", motto:"Bir kanat ilham, öteki akıl ve mantık — YAMA",
+       title:"Osmanlıca Okuma Antrenörü", progress:(a,b)=>`${a} / ${b} kart açıldı` },
+  de:{ beamer:"⛶ Beamer-Modus", revealAll:"Alle öffnen", revealNone:"Alle schließen",
+       kbd_nav:"navig.", kbd_reveal:"auf/zu", motto:"Ein Flügel Inspiration, der andere Vernunft — YAMA",
+       title:"Osmanisch-Lesetrainer", progress:(a,b)=>`${a} / ${b} Karten geöffnet` },
+  en:{ beamer:"⛶ Beamer mode", revealAll:"Reveal all", revealNone:"Hide all",
+       kbd_nav:"navigate", kbd_reveal:"toggle", motto:"One wing inspiration, the other reason — YAMA",
+       title:"Ottoman Reading Trainer", progress:(a,b)=>`${a} / ${b} cards opened` }
+};
+let lang = "tr";
+let activeLesson = 0;
+let focusIndex = -1;
+
+const app = document.getElementById("app");
+const tabsEl = document.getElementById("lessonTabs");
+
+function t(obj){ return (obj && (obj[lang] ?? obj.tr)) ?? ""; }
+
+function renderTabs(){
+  tabsEl.innerHTML = "";
+  DATA.lessons.forEach((L,i)=>{
+    const b=document.createElement("button");
+    b.className="lesson-tab"+(i===activeLesson?" on":"");
+    b.textContent=t(L.title);
+    b.onclick=()=>{ activeLesson=i; focusIndex=-1; render(); };
+    tabsEl.appendChild(b);
+  });
+}
+
+function render(){
+  const L = DATA.lessons[activeLesson];
+  renderTabs();
+  let html = `<div class="lesson-head">
+    <h1>${t(L.title)}</h1>
+    <div class="konu">${t(L.konu)}</div>
+  </div>
+  <div class="lesson-note">${t(L.note)}</div>`;
+
+  if(L.type==="words"){
+    html += `<div class="progress" id="prog"></div><div class="words">`;
+    L.items.forEach((w,i)=>{
+      html += `<div class="word" tabindex="0" data-i="${i}">
+        <span class="hint">${i+1}</span>
+        <div class="ar osman">${w.ar}</div>
+        <div class="reveal">
+          <div class="translit">${w.translit}</div>
+          <div class="mean">${t(w.mean)}</div>
+          <div class="rule">${t(w.rule)}</div>
+        </div>
+      </div>`;
+    });
+    html += `</div>`;
+  } else if(L.type==="text"){
+    html += `<div class="text-block">`;
+    L.items.forEach((ln,i)=>{
+      html += `<div class="line" tabindex="0" data-i="${i}">
+        <div class="ar osman">${ln.ar}</div>
+        <div class="tr">${lang==='de'?(ln.de||ln.tr):lang==='en'?(ln.en||ln.tr):ln.tr}<div class="de">${lang==='tr'?(ln.de||''):ln.tr}</div></div>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+  app.innerHTML = html;
+
+  app.querySelectorAll(".word,.line").forEach(el=>{
+    el.addEventListener("click",()=>toggle(el));
+    el.addEventListener("keydown",e=>{
+      if(e.key===" "||e.key==="Enter"){ e.preventDefault(); toggle(el); }
+    });
+  });
+  updateProgress();
+}
+
+function toggle(el){
+  el.classList.toggle("open");
+  document.querySelectorAll(".line").forEach(l=>l.classList.remove("active"));
+  if(el.classList.contains("line")) el.classList.add("active");
+  updateProgress();
+}
+
+function updateProgress(){
+  const p=document.getElementById("prog");
+  if(!p) return;
+  const total=app.querySelectorAll(".word").length;
+  const open=app.querySelectorAll(".word.open").length;
+  p.textContent=UI[lang].progress(open,total);
+}
+
+/* ── Beamer modu ── */
+const beamerBtn=document.getElementById("beamerBtn");
+beamerBtn.onclick=()=>{
+  document.body.classList.toggle("beamer");
+  beamerBtn.classList.toggle("on",document.body.classList.contains("beamer"));
+};
+
+/* ── Hepsini aç/kapa ── */
+const revealBtn=document.getElementById("revealAllBtn");
+revealBtn.onclick=()=>{
+  const cards=[...app.querySelectorAll(".word,.line")];
+  const anyClosed=cards.some(c=>!c.classList.contains("open"));
+  cards.forEach(c=>c.classList.toggle("open",anyClosed));
+  revealBtn.textContent = anyClosed ? UI[lang].revealNone : UI[lang].revealAll;
+  updateProgress();
+};
+
+/* ── Dil ── */
+document.querySelectorAll(".lang").forEach(b=>{
+  b.onclick=()=>{
+    lang=b.dataset.lang;
+    document.querySelectorAll(".lang").forEach(x=>x.classList.toggle("on",x.dataset.lang===lang));
+    document.querySelectorAll("[data-i18n]").forEach(el=>{
+      const k=el.dataset.i18n;
+      if(k==="title_ar"||k==="title"){ if(k==="title") el.textContent=UI[lang].title; return; }
+      if(UI[lang][k]) el.textContent=UI[lang][k];
+    });
+    render();
+  };
+});
+document.querySelector('.lang[data-lang="tr"]').classList.add("on");
+
+/* ── Klavye navigasyonu ── */
+document.addEventListener("keydown",e=>{
+  if(e.target.matches("input,textarea")) return;
+  const cards=[...app.querySelectorAll(".word,.line")];
+  if(e.key==="ArrowRight"||e.key==="ArrowLeft"){
+    e.preventDefault();
+    if(!cards.length) return;
+    focusIndex += (e.key==="ArrowRight"?1:-1);
+    if(focusIndex<0) focusIndex=cards.length-1;
+    if(focusIndex>=cards.length) focusIndex=0;
+    cards[focusIndex].focus();
+  }
+  if(e.key.toLowerCase()==="b"){ beamerBtn.click(); }
+});
+
+render();
+</script>
+</body>
+</html>
