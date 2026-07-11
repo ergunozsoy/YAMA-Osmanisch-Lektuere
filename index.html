@@ -108,10 +108,12 @@ main{max-width:1000px;margin:0 auto;padding:28px 24px 80px}
 .line.active{border-color:var(--altin);box-shadow:0 0 0 1px var(--altin)}
 .line .ar{font-size:2rem;text-align:right;line-height:1.9}
 .line .tr{
-  opacity:0;max-height:0;overflow:hidden;transition:opacity .25s,max-height .3s;
-  color:var(--surh);font-size:1.05rem;margin-top:0
+  opacity:0;max-height:0;overflow:hidden;transition:opacity .25s,max-height .35s;
+  margin-top:0
 }
-.line.open .tr{opacity:1;max-height:120px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--cizgi)}
+.line.open .tr{opacity:1;max-height:600px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--cizgi)}
+.line .okunus{color:var(--murekkep);font-weight:600;font-size:1.05rem;line-height:1.55;direction:ltr;text-align:left}
+.line .ceviri{color:var(--surh);font-size:1rem;line-height:1.5;margin-top:7px;direction:ltr;text-align:left}
 .line .de{color:var(--soluk);font-size:.95rem;font-style:italic;margin-top:4px}
 
 /* ── Beamer modu ── */
@@ -121,6 +123,8 @@ body.beamer .word .translit{font-size:1.7rem}
 body.beamer .word .mean{font-size:1.2rem}
 body.beamer .line .ar{font-size:3.2rem;line-height:2}
 body.beamer .line .tr{font-size:1.6rem}
+body.beamer .line .okunus{font-size:1.7rem}
+body.beamer .line .ceviri{font-size:1.5rem}
 body.beamer .line .de{font-size:1.3rem}
 body.beamer .lesson-note .osman{font-size:2rem}
 body.beamer main{max-width:1200px}
@@ -668,6 +672,354 @@ footer .osman{color:var(--surh);font-size:1rem}
           }
         }
       ]
+    },
+    {
+      "id": "hafta3-arapca",
+      "title": {
+        "tr": "3. Hafta — Arapça Tamlama: Harf-i Ta'rîf",
+        "de": "Woche 3 — Arabische Genitivverbindung: der Artikel",
+        "en": "Week 3 — Arabic Construct: the Definite Article"
+      },
+      "konu": {
+        "tr": "ال (el-) · şemsî ve kamerî harfler",
+        "de": "ال (al-) · Sonnen- und Mondbuchstaben",
+        "en": "ال (al-) · sun & moon letters"
+      },
+      "note": {
+        "tr": "Arapça belirlilik takısı <b>ال (el-)</b> kelimenin başına gelir (İng. <i>the</i>). Lâm bazen okunur, bazen okunmaz: kelime <b>ay harfi</b> ile başlıyorsa lâm okunur (<b>kamerî</b>: el-kamer), <b>güneş harfi</b> ile başlıyorsa lâm okunmaz, sonraki harf <b>şedde</b> alır (<b>şemsî</b>: eş-şems). 14 güneş harfi: ت ث د ذ ر ز س ش ص ض ط ظ ل ن. Karta tıklayın.",
+        "de": "Der arabische Artikel <b>ال (al-)</b> steht vorne (dt. <i>der/die/das</i>). Das lâm wird gelesen, wenn das Wort mit einem <b>Mondbuchstaben</b> beginnt (<b>kamerî</b>: al-kamar), und assimiliert (mit <b>şedde</b>), wenn es mit einem <b>Sonnenbuchstaben</b> beginnt (<b>şemsî</b>: aš-šams).",
+        "en": "The Arabic definite article <b>ال (al-)</b> attaches to the front of a word (Eng. <i>the</i>). The lâm is pronounced when the word starts with a <b>moon letter</b> (<b>kamerî</b>: al-kamar), but assimilates (taking <b>şedde</b>) when it starts with a <b>sun letter</b> (<b>şemsî</b>: ash-shams)."
+      },
+      "type": "words",
+      "items": [
+        {
+          "ar": "الشمس",
+          "translit": "eş-şems",
+          "mean": { "tr": "güneş", "de": "die Sonne", "en": "the sun" },
+          "rule": {
+            "tr": "şın güneş harfi → lâm okunmaz, şın şedde alır: eş-şems",
+            "de": "šın ist Sonnenbuchstabe → lâm assimiliert: aš-šams",
+            "en": "şın is a sun letter → lâm assimilates, şın doubles: ash-shams"
+          }
+        },
+        {
+          "ar": "القمر",
+          "translit": "el-kamer",
+          "mean": { "tr": "ay", "de": "der Mond", "en": "the moon" },
+          "rule": {
+            "tr": "kaf ay harfi → lâm okunur: el-kamer",
+            "de": "kaf ist Mondbuchstabe → lâm wird gelesen: al-kamar",
+            "en": "kaf is a moon letter → lâm is pronounced: al-kamar"
+          }
+        },
+        {
+          "ar": "الدولة",
+          "translit": "ed-devle",
+          "mean": { "tr": "devlet", "de": "der Staat", "en": "the state" },
+          "rule": {
+            "tr": "dal güneş harfi → lâm okunmaz: ed-devle",
+            "de": "dal ist Sonnenbuchstabe → ad-devle",
+            "en": "dal is a sun letter → lâm assimilates: ad-devle"
+          }
+        },
+        {
+          "ar": "البيت",
+          "translit": "el-beyt",
+          "mean": { "tr": "ev", "de": "das Haus", "en": "the house" },
+          "rule": {
+            "tr": "be ay harfi → lâm okunur: el-beyt",
+            "de": "be ist Mondbuchstabe → al-beyt",
+            "en": "be is a moon letter → lâm pronounced: al-beyt"
+          }
+        },
+        {
+          "ar": "النور",
+          "translit": "en-nûr",
+          "mean": { "tr": "ışık, nur", "de": "das Licht", "en": "the light" },
+          "rule": {
+            "tr": "nun güneş harfi → lâm okunmaz, nun şedde alır: en-nûr",
+            "de": "nun ist Sonnenbuchstabe → an-nûr",
+            "en": "nun is a sun letter → lâm assimilates: an-nûr"
+          }
+        },
+        {
+          "ar": "الكتاب",
+          "translit": "el-kitâb",
+          "mean": { "tr": "kitap", "de": "das Buch", "en": "the book" },
+          "rule": {
+            "tr": "kef ay harfi → lâm okunur: el-kitâb",
+            "de": "kef ist Mondbuchstabe → al-kitâb",
+            "en": "kef is a moon letter → lâm pronounced: al-kitâb"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hafta3-arapca-okuyus",
+      "title": {
+        "tr": "3. Hafta — Arapça Tamlamada Okuyuş",
+        "de": "Woche 3 — Aussprache der arabischen Verbindung",
+        "en": "Week 3 — Reading the Arabic Construct"
+      },
+      "konu": {
+        "tr": "Muzâf ötresi · te→he · bi- · İstanbul ağzı · şeddeli ye",
+        "de": "ötre · te→he · bi- · Istanbuler Aussprache",
+        "en": "muzâf ötre · te→he · bi- · Istanbul reading"
+      },
+      "note": {
+        "tr": "Belirlilikli tamlamada birinci isim (muzâf) genelde <b>ötre</b> ile biter: <i>dâr → dârü'l-…</i>. Sonu yuvarlak <b>te (ة)</b> olan kelime tamlamada <b>he (-e)</b> okunur. Başına <b>bi- (بـ)</b> harf-i cerri gelirse ötre yerine <b>esre</b> olur. Bazı özel adlar <b>İstanbul ağzı</b> ile son heceyi üstünle söyler. <b>Şeddeli ye</b> 'iyy' verir. Karta tıklayın.",
+        "de": "Der erste Name (muzâf) endet meist auf <b>ötre (u/ü)</b>: <i>dâr → dârü'l-…</i>. Ein finales rundes <b>te (ة)</b> wird in der Verbindung als <b>he (-e)</b> gelesen. Nach dem Präfix <b>bi- (بـ)</b> steht statt ötre ein <b>esre</b>. <b>Şeddeli ye</b> ergibt „iyy“.",
+        "en": "The first noun (muzâf) usually ends in <b>ötre (u/ü)</b>: <i>dâr → dârü'l-…</i>. A final round <b>te (ة)</b> is read as <b>he (-e)</b> in the construct. After the prefix <b>bi- (بـ)</b> the vowel is <b>esre</b> instead of ötre. A <b>şeddeli ye</b> gives 'iyy'."
+      },
+      "type": "words",
+      "items": [
+        {
+          "ar": "عبد الله",
+          "translit": "Abdu'llâh",
+          "mean": { "tr": "Allah'ın kulu (Abdullah)", "de": "Diener Gottes", "en": "servant of God" },
+          "rule": {
+            "tr": "muzâf 'abd' ötre alır → Abdu; lafza-i celâl",
+            "de": "muzâf 'abd' + ötre → Abdu",
+            "en": "muzâf 'abd' takes ötre → Abdu"
+          }
+        },
+        {
+          "ar": "دار الخلافة",
+          "translit": "dârü'l-hilâfe",
+          "mean": { "tr": "hilafet merkezi (İstanbul)", "de": "Sitz des Kalifats", "en": "seat of the caliphate" },
+          "rule": {
+            "tr": "dâr+ötre → dârü; ha ay harfi (kamerî); sondaki ة → he: -hilâfe",
+            "de": "dâr+ötre; final te → he: -hilâfe",
+            "en": "dâr+ötre → dârü; final te (ة) read as he: -hilâfe"
+          }
+        },
+        {
+          "ar": "بيت المقدس",
+          "translit": "Beytü'l-makdis",
+          "mean": { "tr": "Kudüs", "de": "Jerusalem", "en": "Jerusalem" },
+          "rule": {
+            "tr": "beyt+ötre → beytü; mim ay harfi → lâm okunur (kamerî)",
+            "de": "beyt+ötre; mim = Mondbuchstabe → lâm gelesen",
+            "en": "beyt+ötre → beytü; mim is a moon letter → lâm pronounced"
+          }
+        },
+        {
+          "ar": "نور الدين",
+          "translit": "Nûre'd-dîn",
+          "mean": { "tr": "dinin nuru (özel ad)", "de": "Licht des Glaubens (Name)", "en": "light of the faith (name)" },
+          "rule": {
+            "tr": "İstanbul ağzı: Nûrü'd-dîn yerine Nûre'd-dîn; dal güneş harfi (şemsî)",
+            "de": "Istanbuler Aussprache: Nûre'd-dîn; dal = Sonnenbuchstabe",
+            "en": "Istanbul reading: Nûrü'd-dîn → Nûre'd-dîn; dal is a sun letter"
+          }
+        },
+        {
+          "ar": "بالنسبة",
+          "translit": "bi'n-nisbe",
+          "mean": { "tr": "nispetle, -e göre", "de": "im Verhältnis, gemäß", "en": "in relation to, according to" },
+          "rule": {
+            "tr": "bi- harf-i cerri → esre; nun güneş harfi → lâm okunmaz",
+            "de": "bi- → esre; nun = Sonnenbuchstabe",
+            "en": "bi- prefix → esre; nun is a sun letter → lâm assimilates"
+          }
+        },
+        {
+          "ar": "ولي العهد",
+          "translit": "veliyyü'l-ahd",
+          "mean": { "tr": "veliaht", "de": "Thronfolger", "en": "heir apparent" },
+          "rule": {
+            "tr": "şeddeli ye → 'iyy'; ayın ay harfi → lâm okunur (el-ahd)",
+            "de": "şeddeli ye → 'iyy'; ayın = Mondbuchstabe",
+            "en": "şeddeli ye → 'iyy'; ayın is a moon letter → al-ahd"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hafta3-farsca",
+      "title": {
+        "tr": "3. Hafta — Farsça İzâfet",
+        "de": "Woche 3 — Persische Iżāfe",
+        "en": "Week 3 — Persian Iżāfe"
+      },
+      "konu": {
+        "tr": "Kesre · hemze · ye · kesik izâfet · zincirleme",
+        "de": "kesre · hemze · ye · Ketten-Iżāfe",
+        "en": "kesre · hemze · ye · chained iżāfe"
+      },
+      "note": {
+        "tr": "Farsça tamlamada iki kelime bir <b>kesre (-i / -ı)</b> ile bağlanır ve sıralama Arapça'nın <b>tersidir</b>: önce nitelenen, sonra niteleyen (<i>gül-i ruhsâr</i> = yanak gülü). Birinci kelime nasıl bitiyorsa bağ o kadar değişir: <b>sessiz</b> → sadece kesre; <b>he/ye</b> → araya <b>hemze</b>; <b>elif/vav</b> → araya <b>ye</b>. Kaynaştırmasız kısa kalıp <b>kesik izâfet</b>tir (ser-kâtib). Üç ve daha çok kelime <b>zincirleme</b> olur. Karta tıklayın.",
+        "de": "In der persischen Verbindung werden zwei Wörter durch ein <b>kesre (-i)</b> verknüpft; die Reihenfolge ist <b>umgekehrt</b> zum Arabischen. Je nach Auslaut: <b>Konsonant</b> → nur kesre; <b>he/ye</b> → <b>hemze</b>; <b>elif/vav</b> → <b>ye</b>. Die kurze Form ohne Bindevokal ist die <b>gekürzte Iżāfe</b>.",
+        "en": "In the Persian construct two words are linked by a <b>kesre (-i)</b>, and the order is the <b>reverse</b> of Arabic: qualified first, qualifier second. The link varies by the first word's ending: <b>consonant</b> → kesre only; <b>he/ye</b> → a <b>hemze</b>; <b>elif/vav</b> → a <b>ye</b>. The short linkerless form is the <b>truncated iżāfe</b>; three+ words form a <b>chain</b>."
+      },
+      "type": "words",
+      "items": [
+        {
+          "ar": "مهر مادر",
+          "translit": "mihr-i mâder",
+          "mean": { "tr": "ana sevgisi", "de": "Mutterliebe", "en": "a mother's love" },
+          "rule": {
+            "tr": "sessizle biter (mihr) → sadece kesre: -i",
+            "de": "Konsonant-Auslaut → nur kesre",
+            "en": "consonant ending → kesre only: -i"
+          }
+        },
+        {
+          "ar": "درد دل",
+          "translit": "derd-i dil",
+          "mean": { "tr": "gönül derdi", "de": "Herzeleid", "en": "heartache" },
+          "rule": {
+            "tr": "sessizle biter (derd) → kesre; niteleyen sonra gelir",
+            "de": "Konsonant → kesre; Qualifikator folgt",
+            "en": "consonant ending → kesre; qualifier follows"
+          }
+        },
+        {
+          "ar": "خانۀ بخت",
+          "translit": "hâne-i baht",
+          "mean": { "tr": "talih evi", "de": "Haus des Glücks", "en": "house of fortune" },
+          "rule": {
+            "tr": "he ile biter (hâne) → araya hemze: hâne-i",
+            "de": "he-Auslaut → hemze: hâne-i",
+            "en": "ends in he → a hemze is added: hâne-i"
+          }
+        },
+        {
+          "ar": "صحرای عالم",
+          "translit": "sahrâ-yı âlem",
+          "mean": { "tr": "dünya çölü", "de": "Wüste der Welt", "en": "desert of the world" },
+          "rule": {
+            "tr": "elif ile biter (sahrâ) → araya ye: -yı",
+            "de": "elif-Auslaut → ye: -yı",
+            "en": "ends in elif → a ye is added: -yı"
+          }
+        },
+        {
+          "ar": "سرمنزل",
+          "translit": "ser-menzil",
+          "mean": { "tr": "ana durak, konak başı", "de": "Hauptstation", "en": "main stage/lodging" },
+          "rule": {
+            "tr": "kesik izâfet: kaynaştırma yok, ser- öne birleşir",
+            "de": "gekürzte Iżāfe: kein Bindevokal",
+            "en": "truncated iżāfe: no linking vowel, ser- prefixed"
+          }
+        },
+        {
+          "ar": "بلبل باغ جنان",
+          "translit": "bülbül-i bâğ-ı cinân",
+          "mean": { "tr": "cennet bahçesinin bülbülü", "de": "Nachtigall des Paradiesgartens", "en": "nightingale of the garden of paradise" },
+          "rule": {
+            "tr": "zincirleme izâfet: üç kelime peş peşe kesre ile",
+            "de": "Ketten-Iżāfe: drei Wörter, je kesre",
+            "en": "chained iżāfe: three words linked by successive kesre"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hafta3-telhis",
+      "title": {
+        "tr": "3. Hafta — Telhîs: Bir Arşiv Belgesi",
+        "de": "Woche 3 — Telhîs: ein Archivdokument",
+        "en": "Week 3 — Telhîs: an Archival Document"
+      },
+      "konu": {
+        "tr": "Müneccimbaşı muavinliği ta'yîni · 15 Şevvâl 1284",
+        "de": "Ernennung eines Astronomen-Gehilfen · 1284 H.",
+        "en": "Appointment of an astronomer's assistant · 1284 AH"
+      },
+      "note": {
+        "tr": "Bu, gerçek bir <b>arşiv belgesidir</b> (Başbakanlık Osmanlı Arşivi, İrâde Tasnîfi). Belge türü <b>telhîs</b>: makama sunulan özet/arz yazısı; yazı türü <b>rik'a</b>. Metin, boşalan bir <b>müneccimbaşı muavinliği</b> görevinin Mehmed İzzet Efendi'ye verilmesini arz eder. Aşağıdaki Osmanlıca satırlar aslın <b>naskh dizgisidir</b>; okunuş (transkripsiyon) ve çeviriler bu laboratuvarındır. Her satıra tıklayın; okunuşu ve çevirisi açılır.",
+        "de": "Dies ist ein echtes <b>Archivdokument</b> (Osmanisches Archiv, İrâde-Bestand). Gattung <b>telhîs</b> (Zusammenfassung/Vortrag), Schriftart <b>rik'a</b>. Der Text schlägt vor, das frei gewordene <b>Gehilfenamt des Chefastronomen</b> Mehmed İzzet Efendi zu übertragen. Die osmanischen Zeilen sind ein <b>Naskh-Satz</b>; Umschrift und Übersetzungen stammen aus diesem Labor.",
+        "en": "This is a genuine <b>archival document</b> (Ottoman Archives, İrâde classification). Its genre is <b>telhîs</b> (a summary memorandum), its script <b>rik'a</b>. The text proposes conferring the vacant <b>assistantship to the Chief Astronomer</b> on Mehmed İzzet Efendi. The Ottoman lines below are a <b>naskh typesetting</b> of the original; the transliteration and translations are this lab's own."
+      },
+      "type": "text",
+      "items": [
+        {
+          "ar": "شهریه ايكی يوز اللی قروش معاشله اون بش سنه قدر منجم باشی معاونلیغی خدمتنده بولنمش اولان شهزاده موقّتی احمد افندینک",
+          "translit": "Şehriyye ikiyüz elli guruş ma'âşla on beş sene kadar Müneccimbaşı mu'âvinliği hıdmetinde bulunmuş olan Şehzâde muvakkıtı Ahmed Efendi'nin",
+          "tr": "Aylık iki yüz elli kuruş maaşla, on beş yıl kadar Müneccimbaşı yardımcılığı görevinde bulunmuş olan Şehzade muvakkiti (zaman ölçen) Ahmed Efendi'nin —",
+          "de": "Ahmed Efendi, der Zeitmesser (muvakkit) des Prinzen, der mit einem Monatsgehalt von zweihundertfünfzig Kuruş etwa fünfzehn Jahre lang als Gehilfe des Chefastronomen gedient hatte, —",
+          "en": "Ahmed Efendi, the prince's timekeeper (muvakkit), who had served for about fifteen years as assistant to the Chief Astronomer on a monthly salary of two hundred fifty kuruş, —"
+        },
+        {
+          "ar": "مؤخّراً منجم ثانیلک مأموریتنه تعیینی جهتیله عهده سنده بولنان معاونلیغه آخرینک نصبی دردست ايكن",
+          "translit": "mu'ahharean müneccim-i sânîlik me'mûriyetine ta'yîni cihetiyle uhdesinde bulunan mu'âvinliğe âherinin nasbı der-dest iken",
+          "tr": "sonradan ikinci müneccimlik memuriyetine tayin edilmesi sebebiyle, uhdesindeki (üzerindeki) yardımcılığa bir başkasının atanması hazırlanırken;",
+          "de": "da er später zum Amt des zweiten Astronomen ernannt wurde und die Ernennung eines anderen auf die ihm obliegende Gehilfenstelle bevorstand,",
+          "en": "since he was later appointed to the post of second astronomer, and the appointment of someone else to the assistantship he held was being prepared,"
+        },
+        {
+          "ar": "مومی الیهنک وفاتی وقوعیله ايشبو معاونلک وظیفه سی بتون بتون آچقده قالمش ايدوكنه",
+          "translit": "mûmâ ileyhin vefâtı vukû'ıyla işbu mu'âvinlik vazîfesi bütün bütün açıkta kalmış idüğine",
+          "tr": "adı geçenin (Ahmed Efendi'nin) vefat etmesiyle bu yardımcılık görevi tamamen boş (açıkta) kalmıştır;",
+          "de": "ist durch den Tod des Genannten dieses Gehilfenamt gänzlich unbesetzt geblieben;",
+          "en": "with the death of the said person this assistant post has been left entirely vacant;"
+        },
+        {
+          "ar": "و منجم ثانیلک و معاونلک خدمتلریله ايكی كشینک موظّف اولمسی فن حساب نجومده آدم يتیشمه سنی موجب اولدیغندن بشقه",
+          "translit": "ve müneccim-i sânîlik ve mu'âvinlik hıdmetleriyle iki kişinin muvazzaf olması fenn-i hisâb-ı nücûmda adam yetişmesini mûcib olduğundan başka",
+          "tr": "ikinci müneccimlik ve yardımcılık hizmetleriyle iki kişinin görevli olması, yıldız hesabı ilminde (astronomi) adam yetişmesini sağladığından başka;",
+          "de": "abgesehen davon, dass die Besetzung mit zwei Personen — dem zweiten Astronomen und dem Gehilfen — den Nachwuchs in der Sternrechnung fördert,",
+          "en": "besides the fact that having two persons charged — the second astronomer and the assistant — fosters trained men in the science of astral calculation,"
+        },
+        {
+          "ar": "بونلر بهر سنه چیقاریلان ايّام و احكام تقویملرینک امور حسابیه و تحریریه سنه معاونتله بو كیفیت دول سائره ده اولان منتظم مكاتب نجومیه و رصدخانه لره قارشو تقویم مذبوره نک دوام صحّتنه اولدقجه مدار اولدیغنه",
+          "translit": "bunlar beher sene çıkarılan eyyâm ve ahkâm takvîmlerinin umûr-ı hisâbiyye ve tahrîriyyesine mu'âvenetle bu keyfiyet düvel-i sâirede olan muntazam mekâtib-i nücûmiye ve rasadhânelere karşu takvîm-i mezbûrenin devâm-ı sıhhatine oldukça medâr olduğuna",
+          "tr": "bunlar her yıl çıkarılan gün ve ahkâm takvimlerinin hesap ve yazım işlerine yardım eder; bu durum, diğer devletlerdeki düzenli astronomi okulları ve rasathanelere karşı, söz konusu takvimin doğruluğunun sürmesine hayli katkı sağladığından;",
+          "de": "unterstützen sie die Rechen- und Schreibarbeiten der jährlich herausgegebenen Tages- und Prognosekalender; dies trägt gegenüber den geordneten Sternwarten und astronomischen Schulen anderer Staaten wesentlich zur fortdauernden Richtigkeit dieses Kalenders bei;",
+          "en": "they assist the computational and drafting work of the annually issued day- and prognostication-calendars; and this greatly helps sustain the accuracy of that calendar against the well-ordered astronomical schools and observatories of other states;"
+        },
+        {
+          "ar": "و سنین وفیره دن برو منجم باشی بولنان داعیانک امور تحریریه سنه شو طریقده بر وظیفه یه نائل اولمق امنیه سیله خدمت ايتمش و لطف و عاطفت سنیه یه لیاقتی دركار بولنمش اولان محمد عزّت افندی داعیلری",
+          "translit": "ve sinîn-i vefîreden berü müneccimbaşı bulunan dâ'iyânın umûr-ı tahrîriyyesine şu tarîkde bir vazîfeye nâ'il olmak ümniyyesiyle hıdmet etmiş ve lutf ü âtıfet-i seniyyeye liyâkati derkâr bulunmuş olan Mehmed İzzet Efendi dâ'îleri",
+          "tr": "uzun yıllardır müneccimbaşı olan bu duacının yazı işlerine, bu yolda bir göreve kavuşma ümidiyle hizmet etmiş ve yüce lütfa layık olduğu aşikâr olan Mehmed İzzet Efendi kulları —",
+          "de": "Mehmed İzzet Efendi, der den Schreibarbeiten des seit vielen Jahren amtierenden Chefastronomen in der Hoffnung auf ein solches Amt gedient hat und dessen Würdigkeit der hohen Gunst offenkundig ist, —",
+          "en": "Mehmed İzzet Efendi, who has served the drafting work of the long-serving Chief Astronomer in the hope of attaining such a post, and whose worthiness of the sublime favor is evident, —"
+        },
+        {
+          "ar": "معاونلک مذبورک عهده سنه توجیه اولنمسندن ناشی مأیوس اولوب سائر هوسكاران فن نجوم دخی شو حالی كورنجه فن مذبور تحصیلنه رغبت ايتمدكلرندن",
+          "translit": "mu'âvinlik-i mezbûrun uhdesine tevcîh olunmasından nâşî me'yûs olub sâ'ir heveskârân-ı fenn-i nücûm dahi şu hâli görünce fenn-i mezbûr tahsîline rağbet etmediklerinden",
+          "tr": "söz konusu yardımcılığın (bir başkasına) verilmesi ihtimalinden dolayı ümitsizliğe düşmüş; yıldız ilmine hevesli diğer kişiler de bu durumu görünce bu ilmi öğrenmeye rağbet etmediklerinden;",
+          "de": "ist wegen der (drohenden) Vergabe jenes Gehilfenamts an einen anderen verzweifelt; und da auch andere an der Sternkunde Interessierte angesichts dessen kein Verlangen zeigen, diese Wissenschaft zu erlernen,",
+          "en": "has fallen into despair because that assistantship was to be given to another; and since other enthusiasts of astronomy, seeing this, show no desire to study the science,"
+        },
+        {
+          "ar": "بو كیفیت آز زمان ايچنده فن مذبور اربابینک كلّیةً انقراضنی موجب كورنه رك",
+          "translit": "bu keyfiyet az zamân içinde fenn-i mezbûr erbâbının külliyen inkırâzını mûcib görünerek",
+          "tr": "bu durum kısa zamanda bu ilim erbabının tamamen tükenmesine (yok olmasına) yol açacak görünmektedir.",
+          "de": "droht dieser Zustand in kurzer Zeit das gänzliche Aussterben der Kenner dieser Wissenschaft herbeizuführen.",
+          "en": "this situation appears likely, in a short time, to cause the complete extinction of the masters of this science."
+        },
+        {
+          "ar": "سایۀ شوكت وایۀ جناب ملوكانه ده فنون و معارفنک ايلرولمه سی ايسه بغایت مطلوب و ملتزم بولندیغنه بناءً",
+          "translit": "sâye-i şevket-vâye-i cenâb-ı mülûkânede fünûn ve ma'ârifin ilerülemesi ise be-gâyet matlûb ve mültezem bulunduğuna binâ'en",
+          "tr": "Padişahın şevketli gölgesinde fen ve ilimlerin ilerlemesi ise son derece istenen ve gerekli bulunduğundan;",
+          "de": "Da aber der Fortschritt der Wissenschaften und Künste im machtvollen Schatten des Herrschers äußerst erwünscht und geboten ist,",
+          "en": "But since the advancement of the sciences and learning under the majestic shadow of the sovereign is most desired and requisite,"
+        },
+        {
+          "ar": "بر وجه محرّر معاونلک مذبورک شهریه مخصّص اولان ايكی يوز اللی قروش معاشیله افندی مومی الیه داعیلری عهده سنه توجیه و احسانیله",
+          "translit": "ber vech-i muharrer mu'âvinlik-i mezbûrun şehriyye muhassas olan ikiyüz elli guruş ma'âşıyla efendi-i mûmâ ileyh dâ'îleri uhdesine tevcîh ve ihsânıyla",
+          "tr": "yazıldığı üzere, söz konusu yardımcılığın aylık iki yüz elli kuruş maaşıyla adı geçen efendi kullarının uhdesine tevcih ve ihsan edilmesiyle —",
+          "de": "möge, wie dargelegt, jenes Gehilfenamt mit dem Monatsgehalt von zweihundertfünfzig Kuruş dem genannten Efendi verliehen und gewährt werden, —",
+          "en": "may that assistantship, as set forth, with its monthly salary of two hundred fifty kuruş, be conferred and granted upon the said efendi, —"
+        },
+        {
+          "ar": "اسباب مسروریتنک استحصالی و محاذیر آتیه نک دفعی خصوصنه مساعدۀ علیۀ جناب مشیخت پناهیلرینک بی دریغ و ارزان بیورلمسی بابنده امر و فرمان حضرت ولی الامرندر",
+          "translit": "esbâb-ı mesrûriyyetinin istihsâli ve mehâzir-i âtiyyenin def'î hususûna müsâ'ade-i aliyye-i cenâb-ı meşîhat-penâhilerinin bî-deriğ ve erzân buyurulması bâbında emr ü fermân Hazret-i veliyyü'l-emrindir",
+          "tr": "(böylece) sevindirilmesinin sağlanması ve ileride doğacak sakıncaların giderilmesi hususunda, Şeyhülislam Hazretleri'nin yüce müsaadesinin esirgenmeden lütfedilmesi babında; emir ve ferman, emir sahibi (padişah) Hazretlerinindir.",
+          "de": "damit seine Zufriedenheit erreicht und künftige Nachteile abgewendet werden; die hohe Erlaubnis Seiner Exzellenz des Şeyhülislam möge unversagt und großzügig erteilt werden — Befehl und Erlass stehen dem Gebieter (dem Herrscher) zu.",
+          "en": "so that his contentment be secured and future harms averted; the exalted permission of His Eminence the Şeyhülislam being ungrudgingly and generously granted — command and decree rest with the Lord of Authority (the sovereign)."
+        },
+        {
+          "ar": "فی ١٥ شوّال سنه ١٢٨٤ ــ الداعی",
+          "translit": "Fî 15 Şevvâl sene 1284 — Ed-dâ'î (Mühür: Es-Seyyid Ahmed Tâhir)",
+          "tr": "15 Şevval 1284 tarihinde. — Duacı (Mühür: Es-Seyyid Ahmed Tâhir)",
+          "de": "Am 15. Şevval 1284. — Der Bittsteller (Siegel: es-Seyyid Ahmed Tâhir)",
+          "en": "On 15 Şevval 1284. — The petitioner (Seal: es-Seyyid Ahmed Tâhir)"
+        }
+      ]
     }
   ]
 }
@@ -735,9 +1087,13 @@ function render(){
   } else if(L.type==="text"){
     html += `<div class="text-block">`;
     L.items.forEach((ln,i)=>{
+      const ceviri = lang==='de'?(ln.de||ln.tr):lang==='en'?(ln.en||ln.tr):ln.tr;
       html += `<div class="line" tabindex="0" data-i="${i}">
         <div class="ar osman">${ln.ar}</div>
-        <div class="tr">${lang==='de'?(ln.de||ln.tr):lang==='en'?(ln.en||ln.tr):ln.tr}<div class="de">${lang==='tr'?(ln.de||''):ln.tr}</div></div>
+        <div class="tr">
+          ${ln.translit?`<div class="okunus">${ln.translit}</div>`:``}
+          <div class="ceviri">${ceviri}</div>
+        </div>
       </div>`;
     });
     html += `</div>`;
